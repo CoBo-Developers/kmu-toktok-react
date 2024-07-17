@@ -6,7 +6,7 @@ function App() {
     <div className='page'>
       <aside>
         <section className='aside-menu'>
-          
+          <h1 className='aside-title'>kmu<br/>toktok-.</h1>
         </section>
         <section>
 
