@@ -33,6 +33,7 @@
   align-items: center;
   gap: 8px;
   box-sizing: border-box;
+  margin-bottom: 18px;
 }
 
 .aside-user-info-icon {
@@ -62,4 +63,44 @@
   font-size: 12px;
   font-weight: 300;
   cursor: pointer;
+}
+
+.aside-menus {
+  list-style: none;
+  color: white;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.aside-menus-item {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.aside-menus-item a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.aside-menus-item.active {
+  background: #4B7FB680;
+  border-radius: 10px;
+  cursor: default;
+}
+
+.aside-menus-item.active a {
+  cursor: default;
+}
+
+.aside-menus-item > a > img {
+  width: 31px;
+  height: 31px;
+  aspect-ratio: 1;
 }
