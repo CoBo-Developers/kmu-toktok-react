@@ -1,0 +1,102 @@
+.aside-menu {
+  width: 300px;
+  height: 100dvh;
+  background: #001832;
+  border-radius: 0 30px 30px 0;
+  flex: none;
+  padding: 38px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aside-title {
+  color: white;
+  font-size: 24px;
+  font-family: 'GmarketSansMedium', sans-serif;
+  font-weight: 200;
+  margin-top: 18px;
+  margin-bottom: 54px;
+}
+
+.aside-user-info {
+  padding: 10px 12px;
+  background: #152A41;
+  width: 100%;
+  border-radius: 10px 12px 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  margin-bottom: 18px;
+}
+
+.aside-user-info-icon {
+  flex: none;
+  width: 31px;
+  height: 31px;
+  aspect-ratio: 1;
+}
+
+.aside-user-info-content {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.aside-user-info-content > span {
+  display: block;
+}
+
+.aside-id {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.aside-logout {
+  font-size: 12px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.aside-menus {
+  list-style: none;
+  color: white;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.aside-menus-item {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.aside-menus-item a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.aside-menus-item.active {
+  background: #4B7FB680;
+  border-radius: 10px;
+  cursor: default;
+}
+
+.aside-menus-item.active a {
+  cursor: default;
+}
+
+.aside-menus-item > a > img {
+  width: 31px;
+  height: 31px;
+  aspect-ratio: 1;
+}
