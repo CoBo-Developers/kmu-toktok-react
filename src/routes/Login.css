@@ -79,6 +79,7 @@ html, body {
         flex-direction: column;
         height: 512px;
         border: none;
+        padding: 0;
     }
     .login-content-right h2 {
         display: none;
