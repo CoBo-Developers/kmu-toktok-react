@@ -5,8 +5,11 @@ import personIcon from '../../assets/icons/person-icon.png';
 import fileIcon from '../../assets/icons/file-icon.png';
 import writingIcon from '../../assets/icons/writing-icon.png';
 import { Link } from 'react-router-dom';
+import useCurrentPath from '../../hooks/useCurrentPath';
 
 function Aside() {
+  const currentPath = useCurrentPath();
+  
   return (
     <aside>
       <section className='aside-menu'>
@@ -19,26 +22,26 @@ function Aside() {
           </article>
         </section>
         <ul className='aside-menus'>
-          <li className='aside-menus-item active'>
-            <Link>
+          <li className={'aside-menus-item ' + (currentPath === 'chatbot' ? 'active' : 'null')}>
+            <Link to='/chatbot'>
               <img src={chatIcon} alt="chat-icon" />
               <span>챗봇과 대화하기</span>
             </Link>
           </li>
-          <li className='aside-menus-item'>
-            <Link>
+          <li className={'aside-menus-item ' + (currentPath === 'chatprof' ? 'active' : 'null')}>
+            <Link to='/chatprof'>
               <img src={personIcon} alt="person-icon" />
               <span>교수님과 대화하기</span>
             </Link>
           </li>
-          <li className='aside-menus-item'>
-            <Link>
+          <li className={'aside-menus-item ' + (currentPath === 'file' ? 'active' : 'null')}>
+            <Link to='/file'>
               <img src={fileIcon} alt="file-icon" />
               <span>파일 목록 보기</span>
             </Link>
           </li>
-          <li className='aside-menus-item'>
-            <Link>
+          <li className={'aside-menus-item ' + (currentPath === 'writing' ? 'active' : 'null')}>
+            <Link to='/writing'>
               <img src={writingIcon} alt="writing-icon" />
               <span>나의 글쓰기</span>
             </Link>
