@@ -1,10 +1,10 @@
 .aside-menu {
-  width: 300px;
+  width: 280px;
   height: 100dvh;
   background: #001832;
   border-radius: 0 30px 30px 0;
   flex: none;
-  padding: 38px;
+  padding: 28px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
