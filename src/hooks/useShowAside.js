@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import useCurrentPath from "./useCurrentPath";
 
 export default function useShowAside() {
-  const location = useLocation();
+  const currentPath = useCurrentPath();
   const [showAside, setShowAside] = useState(false);
 
   useEffect(() => {
-    const currentPath = location.pathname.split('/')[1];
     if (
       currentPath == 'chatbot' ||
       currentPath == 'chatprof' ||
@@ -17,7 +16,7 @@ export default function useShowAside() {
     } else {
       setShowAside(false);
     }
-  }, [location])
+  }, [currentPath])
 
   return showAside;
 }

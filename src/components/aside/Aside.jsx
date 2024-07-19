@@ -4,17 +4,12 @@ import chatIcon from '../../assets/icons/chat-icon.png';
 import personIcon from '../../assets/icons/person-icon.png';
 import fileIcon from '../../assets/icons/file-icon.png';
 import writingIcon from '../../assets/icons/writing-icon.png';
-import { Link, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import useCurrentPath from '../../hooks/useCurrentPath';
 
 function Aside() {
-  const location = useLocation();
-  const [currentPath, setCurrentPath] = useState('');
-
-  useEffect(() => {
-    const path = location.pathname.split('/')[1];
-    setCurrentPath(path);
-  }, [location])
+  const currentPath = useCurrentPath();
+  
   return (
     <aside>
       <section className='aside-menu'>
