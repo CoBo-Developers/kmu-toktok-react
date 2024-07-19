@@ -14,10 +14,10 @@ function App() {
       }      
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/chatbot" />
-        <Route path="/chatprof" />
-        <Route path="/file" />
-        <Route path="/writing" />
+        <Route path="/chatbot" element={""} />
+        <Route path="/chatprof" element={""} />
+        <Route path="/file" element={""} />
+        <Route path="/writing" element={""} />
       </Routes>
     </div>
   )
