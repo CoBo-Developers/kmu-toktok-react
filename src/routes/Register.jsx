@@ -2,16 +2,15 @@ import "./Register.css";
 import useRegister from "../hooks/useRegister";
 
 function Register() {
-  const { name, studentId, handleNameChange, handleStudentIdChange } =
-    useRegister();
+  const { 
+    name, 
+    studentId, 
+    handleNameChange, 
+    handleStudentIdChange, 
+    isButtonActive, 
+    handleSubmit 
+  } = useRegister();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(name, studentId);
-  };
-
-  const isButtonActive = name.trim() !== '' && studentId.trim() !== '';
-  
   return (
     <main className="register-main">
       <section className="register-content">
@@ -54,7 +53,7 @@ function Register() {
             />
           </div>
           <div className="btn-wrapper">
-          <button
+            <button
               type="submit"
               className={`next-btn ${isButtonActive ? 'active' : ''}`}
               onClick={handleSubmit}

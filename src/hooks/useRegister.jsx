@@ -11,11 +11,20 @@ function useRegister() {
     setStudentId(e.target.value);
   };
 
+  const isButtonActive = name.trim() !== '' && studentId.trim() !== '';
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(name, studentId);
+  };
+
   return {
     name,
     studentId,
     handleNameChange,
     handleStudentIdChange,
+    isButtonActive,
+    handleSubmit,
   };
 }
 
