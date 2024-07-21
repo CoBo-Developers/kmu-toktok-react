@@ -50,7 +50,7 @@ function Register() {
         <div className="separator"></div>
         <section className="register-content-right">
           {currentStep === 1 && (
-            <>
+            <article className="content-step1">
               <div className="input-wrapper">
                 <label>이름</label>
                 <input
@@ -79,10 +79,10 @@ function Register() {
                   다음
                 </button>
               </div>
-            </>
+            </article>
           )}
           {(currentStep === 2 || currentStep === 3) && (
-            <div className="content-step2">
+            <article className="content-step2">
               <div className={`agree-box ${isChecked ? 'active' : ''}`}>
                 <input
                   id="agree-check"
@@ -133,7 +133,7 @@ function Register() {
                   {currentStep === 2 ? '다음' : '확인'}
                 </button>
               </div>
-            </div>
+            </article>
           )}
         </section>
       </section>
