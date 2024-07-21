@@ -1,11 +1,10 @@
-import { getCookie } from '../utils/cookieManage';
 
-const registerApi = async (name, studentId) => {
+const registerApi = async (name, studentId, accessToken) => {
     const res = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${getCookie('accessToken')}`,
+            Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
             name : name,
@@ -17,7 +16,7 @@ const registerApi = async (name, studentId) => {
         const message = await res.text();
         throw new Error(message);
     }
-    
+
     return res.json();
 }
 export { registerApi };
