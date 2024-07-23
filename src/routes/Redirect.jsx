@@ -1,17 +1,22 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import useLogin from '../hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
 
 function Redirect() {
   const { option } = useParams(); 
-  const { login } = useAuth();
+  const { login } = useLogin();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get('code');
     if (code && option) {
-      login(code, option);
+      login(code, option)
+        .then(() => {
+          navigate('/chatbot');
+        });
     }
-  },[]);
+  },[option]);
 
   return (
     <div>
