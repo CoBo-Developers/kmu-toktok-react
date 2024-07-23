@@ -5,9 +5,11 @@ import Login from './routes/Login';
 import Redirect from './routes/Redirect';
 import useShowAside from './hooks/useShowAside';
 import Register from './routes/Register';
+import useReissue from './hooks/useReissue';
 
 function App() {
   const showAside = useShowAside();
+  useReissue();
 
   return (
     <div className="page">
