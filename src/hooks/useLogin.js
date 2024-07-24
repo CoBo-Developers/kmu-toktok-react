@@ -12,32 +12,30 @@ function useLogin() {
 
   useEffect(() => {
     if (code && option) {
-      console.log('login call');
-        loginApi(code, option)
-            .then((response) => {
-            setCookie("accessToken", response.data.accessToken, { path: '/', maxAge: 2 * 60 * 60 });
-            setCookie("refreshToken", response.data.refreshToken, { path: '/', maxAge: 24 * 7 * 60 });
-            setCookie('isActive', response.data.registerStateEnum, { path: '/', maxAge: 2 * 60 * 60 });
-            })
-            .catch((error) => {
-              console.log(error.message);
-              alert('잘못된 접근입니다.');
-              navigate('/');
-            });
+      loginApi(code, option)
+        .then((response) => {
+          setCookie("accessToken", response.data.accessToken, { path: '/', maxAge: 2 * 60 * 60 });
+          setCookie("refreshToken", response.data.refreshToken, { path: '/', maxAge: 24 * 7 * 60 });
+          setCookie('isActive', response.data.registerStateEnum, { path: '/', maxAge: 2 * 60 * 60 });
+        })
+        .catch((error) => {
+          alert(error.message);
+          navigate('/');
+        });
+    } else {
+      alert('잘못된 접근입니다.');
+      navigate('/');
     }
   }, [code, option]);
 
   useEffect(() => {
     if (cookies.accessToken && cookies.isActive === 'ACTIVE') {
-      console.log('login success');
       navigate('/chatbot');
     }
     else{
-      console.log('goto register');
       navigate('/register');
     }
   }, [cookies]);
-
 }
 
 export default useLogin;

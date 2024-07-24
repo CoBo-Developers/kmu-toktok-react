@@ -7,7 +7,6 @@ function useReissue() {
 
   useEffect(() => {
     if (!cookies.accessToken && cookies.refreshToken) {
-      console.log('reissue');
       reissueApi(cookies.refreshToken)
         .then((response) => {
           setCookie("accessToken", response.data.accessToken, { path: '/',maxAge: 2 * 60 * 60 });
