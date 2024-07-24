@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useUserStore from '../store/useUserStore';
 import { registerApi } from '../api/registerApi';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
 function useRegister() {
-  const { name, studentId, setName, setStudentId } = useUserStore();
+  const { studentId, setStudentId } = useUserStore();
+  const [name, setName] = useState('');
   const [currentStep, setCurrentStep] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
   const [cookies, setCookie] = useCookies(['accessToken', 'refreshToken', 'isActive']);
@@ -32,10 +33,9 @@ function useRegister() {
       registerApi(name, studentId, cookies.accessToken)
         .then((response) => {
           console.log('Register success:', response);
-          setCookie("accessToken", response.data.accessToken, {maxAge: 2 * 60 * 60});
-          setCookie("refreshToken", response.data.refreshToken, {maxAge: 24 * 14 * 60});
-          setCookie('isActive', response.data.registerStateEnum, {maxAge: 2 * 60 * 60});
-          navigate('/chatbot');
+          setCookie("accessToken", response.data.accessToken, { path: '/', maxAge: 2 * 60 * 60});
+          setCookie("refreshToken", response.data.refreshToken, { path: '/', maxAge: 24 * 7 * 60});
+          setCookie('isActive', response.data.registerStateEnum, { path: '/', maxAge: 2 * 60 * 60});
         })
         .catch((error) => {
           console.error(error.message);
@@ -56,6 +56,14 @@ function useRegister() {
       }
     }
   };
+
+  useEffect(() => {
+    if (cookies.accessToken && cookies.isActive === 'ACTIVE') {
+      navigate('/chatbot');
+    } else {
+      navigate('/register');
+    }
+  },[cookies]);
 
   return {
     name,
