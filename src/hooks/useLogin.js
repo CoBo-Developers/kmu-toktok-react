@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { useCookies } from 'react-cookie';
 import { loginApi } from '../api/authApi';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
 
 function useLogin() {
   const [cookies, setCookie] = useCookies(['accessToken', 'refreshToken', 'isActive']);
   const navigate = useNavigate();
-  const code = new URLSearchParams(window.location.search).get('code');
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
   const { option } = useParams(); 
 
   useEffect(() => {
     if (code && option) {
+      console.log('login call');
         loginApi(code, option)
             .then((response) => {
             setCookie("accessToken", response.data.accessToken, { path: '/', maxAge: 2 * 60 * 60 });
@@ -19,16 +20,24 @@ function useLogin() {
             setCookie('isActive', response.data.registerStateEnum, { path: '/', maxAge: 2 * 60 * 60 });
             })
             .catch((error) => {
-            console.log(error.message);
+              console.log(error.message);
+              alert('잘못된 접근입니다.');
+              navigate('/');
             });
     }
   }, [code, option]);
 
   useEffect(() => {
-    if (cookies.accessToken) {
+    if (cookies.accessToken && cookies.isActive === 'ACTIVE') {
+      console.log('login success');
       navigate('/chatbot');
     }
+    else{
+      console.log('goto register');
+      navigate('/register');
+    }
   }, [cookies]);
+
 }
 
 export default useLogin;

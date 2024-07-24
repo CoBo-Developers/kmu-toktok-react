@@ -13,7 +13,7 @@ const registerApi = async (name, studentId, accessToken) => {
     });
 
     if (!res.ok) {
-        const message = await res.text();
+        const message = await res.json();
         throw new Error(message);
     }
 

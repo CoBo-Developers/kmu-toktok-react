@@ -18,7 +18,7 @@ function useReissue() {
             console.log(error);
         })
     }
-  }, [cookies.accessToken]);
+  }, [cookies]);
 }
 
 export default useReissue;
