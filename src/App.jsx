@@ -4,6 +4,7 @@ import Aside from './components/aside/Aside'
 import Login from './routes/Login';
 import useShowAside from './hooks/useShowAside';
 import Register from './routes/Register';
+import Chatbot from './routes/Chatbot';
 
 function App() {
   const showAside = useShowAside();
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/chatbot" element={""} />
+        <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/chatprof" element={""} />
         <Route path="/file" element={""} />
         <Route path="/writing" element={""} />
