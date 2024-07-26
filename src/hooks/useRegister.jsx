@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useUserStore from '../store/useUserStore';
 import { registerApi } from '../api/registerApi';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 
 function useRegister() {
   const { studentId, setStudentId } = useUserStore();
@@ -10,7 +9,6 @@ function useRegister() {
   const [currentStep, setCurrentStep] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
   const [cookies, setCookie] = useCookies(['accessToken', 'refreshToken', 'isActive']);
-  const navigate = useNavigate();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -56,14 +54,6 @@ function useRegister() {
       }
     }
   };
-
-  useEffect(() => {
-    if (cookies.accessToken && cookies.isActive === 'ACTIVE') {
-      navigate('/chatbot');
-    } else {
-      navigate('/register');
-    }
-  },[cookies]);
 
   return {
     name,
