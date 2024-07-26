@@ -4,12 +4,23 @@ import chatIcon from '../../assets/icons/chat-icon.png';
 import personIcon from '../../assets/icons/person-icon.png';
 import fileIcon from '../../assets/icons/file-icon.png';
 import writingIcon from '../../assets/icons/writing-icon.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useCurrentPath from '../../hooks/useCurrentPath';
 
 function Aside() {
   const currentPath = useCurrentPath();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const cookies = ['accessToken', 'refreshToken', 'isActive'];
   
+    cookies.forEach(cookie => {
+      document.cookie = `${cookie}=; path=/; max-age=0`;
+    });
+  
+    navigate('/');
+  };
+
   return (
     <aside>
       <section className='aside-menu'>
@@ -18,7 +29,7 @@ function Aside() {
           <img className='aside-user-info-icon' src={tagIcon} alt="tag-icon" />
           <article className='aside-user-info-content'>
             <span className='aside-id'>2022123455</span>
-            <span className='aside-logout'>로그아웃</span>
+            <span className='aside-logout' onClick={handleLogout}>로그아웃</span>
           </article>
         </section>
         <ul className='aside-menus'>
