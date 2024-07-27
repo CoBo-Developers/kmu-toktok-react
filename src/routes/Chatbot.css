@@ -3,9 +3,40 @@
   width: 100%;
 }
 
+.message-container-inner {
+  margin: 56px auto;
+  max-width: 800px;
+  width: 80%;
+}
+
+.message-wrapper {
+  display: flex;
+}
+
+.message {
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-weight: 300;
+  display: inline-block;
+  max-width: 60%;
+  line-height: 20px;
+}
+
+.message.bot {
+  background: #F0F1F3;
+}
+
+.message.user {
+  background: #001832;
+  color: white;
+  margin-left: auto;
+}
+
 .message-input-wrapper {
   background: #F0F1F3;
-  width: 716px;
+  width: 50vw;
+  max-width: 716px;
   border-radius: 42px;
   box-sizing: border-box;
   padding: 5px;
