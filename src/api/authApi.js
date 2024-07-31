@@ -14,7 +14,7 @@ const reissueApi = async (refreshToken) => {
     const res = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/auth/login`, {
       method: 'PATCH',
       headers: {
-        Authorization: refreshToken,
+        Authorization: `Bearer ${refreshToken}`,
       },
     });
   

@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { reissueApi } from '../api/authApi';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function useReissue() {
   const [cookies, setCookie] = useCookies(['accessToken', 'refreshToken', 'isActive']);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!cookies.accessToken && cookies.refreshToken) {
@@ -16,6 +18,20 @@ function useReissue() {
         .catch ((error) => {
             console.log(error);
         })
+    }
+  }, [cookies]);
+
+  useEffect(() => {
+    if (cookies.accessToken) {
+      if (cookies.isActive === 'ACTIVE'){
+        navigate('/chatbot');
+      }
+      else{
+        navigate('/register');
+      }
+    }
+    else{
+      navigate('/');
     }
   }, [cookies]);
 }

@@ -29,11 +29,16 @@ function useLogin() {
   }, [code, option]);
 
   useEffect(() => {
-    if (cookies.accessToken && cookies.isActive === 'ACTIVE') {
-      navigate('/chatbot');
+    if (cookies.accessToken) {
+      if (cookies.isActive === 'ACTIVE'){
+        navigate('/chatbot');
+      }
+      else{
+        navigate('/register');
+      }
     }
     else{
-      navigate('/register');
+      navigate('/');
     }
   }, [cookies]);
 }
