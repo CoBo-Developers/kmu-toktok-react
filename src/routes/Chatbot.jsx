@@ -8,7 +8,7 @@ function Chatbot() {
   const textarea = useRef();
   const [chatList, setChatList] = useState([]);
   const [cookies] = useCookies(['accessToken']);
-  
+
   const handleResizeHeight = () => {
     textarea.current.style.height = 'auto';
     textarea.current.style.height = textarea.current.scrollHeight + 'px';
