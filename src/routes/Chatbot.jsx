@@ -8,19 +8,23 @@ function Chatbot() {
   const textarea = useRef();
   const [chatList, setChatList] = useState([]);
   const [cookies] = useCookies(['accessToken']);
+  
   const handleResizeHeight = () => {
     textarea.current.style.height = 'auto';
     textarea.current.style.height = textarea.current.scrollHeight + 'px';
   };
 
   useEffect(() => {
-    getChat(cookies.accessToken)
+    if (cookies.accessToken) {
+      getChat(cookies.accessToken)
       .then((res) => {
         setChatList(res.data);
       })
       .catch((error) => {
         alert(error.message);
       })
+    }
+    
   }, [cookies])
   
 
@@ -34,23 +38,17 @@ function Chatbot() {
               아래 입력창에 질문해주세요.
             </div>
           </div>
-          <div className='message-wrapper'>
-            <div className="message user">
-              파이썬 과목의 수강계획서를 알고 싶어.
-            </div>
-          </div>
-
           {
             chatList.map((item, i) => {
               return (
                 <div key={i}>
                   <div className='message-wrapper'>
-                    <div className="message bot">
+                    <div className="message user">
                       { item.question }
                     </div>
                   </div>
                   <div className='message-wrapper'>
-                    <div className="message user">
+                    <div className="message bot">
                       { item.answer }
                     </div>
                   </div>

@@ -1,12 +1,14 @@
 .chatbot {
   position: relative;
   width: 100%;
+  padding-left: 280px;
 }
 
 .message-container-inner {
   margin: 56px auto;
   max-width: 800px;
   width: 80%;
+  margin-bottom: 120px;
 }
 
 .message-wrapper {
@@ -21,6 +23,7 @@
   display: inline-block;
   max-width: 60%;
   line-height: 20px;
+  white-space: pre-wrap;
 }
 
 .message.bot {
