@@ -17,7 +17,8 @@ const postChat = async (question, token) => {
   const res = await fetch(import.meta.env.VITE_APP_CHAT_API_URL + '/api/chat', {
     method: 'POST',
     headers: {
-      'authorization': 'Bearer ' + token
+      'authorization': 'Bearer ' + token,
+      'content-type': 'application/json'
     },
     body: JSON.stringify({
       'question': question
