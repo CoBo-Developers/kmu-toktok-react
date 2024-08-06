@@ -1,0 +1,129 @@
+.chat-container {
+    padding: 56px 0;
+    height: 100dvh;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto ;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+.chat-wrapper {
+    flex: 1;
+    margin: 0 40px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+.chat-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+.date-wrapper {
+    text-align: center;
+    margin: 20px 0;
+    color: #000;
+    font-size: 12px;
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+}
+.message.question {
+    flex-direction: row-reverse;
+    margin-left: auto;
+}
+
+.message-content {
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+.message-content.question {
+    background-color: #001832;
+    align-self: flex-end;
+    margin-left: auto;
+    color: #fff;
+}
+
+.message.question .message-time {
+    font-size: 12px;
+    color: #000;
+    align-self: flex-end;
+    min-width: 70px;
+    margin-left: auto;
+    flex: 1;
+    text-align: right;
+    margin-right: 6px;
+}
+.message.answer .message-time {
+    font-size: 12px;
+    color: #000;
+    align-self: flex-end;
+    min-width: 70px;
+    margin-right: auto;
+    flex: 1;
+    text-align: left;
+    margin-left: 6px;
+}
+
+.message-content.answer {
+    background-color: #F0F1F3;
+    align-self: flex-start;
+    margin-right: auto;
+    width: auto;
+
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #F0F1F3;
+    width: 75%;
+    border-radius: 42px;
+    box-sizing: border-box;
+    padding: 5px;
+    position: sticky;
+    bottom: 0;
+    padding: 0;
+    margin: auto;
+    padding-left: 30px;
+}
+
+.input-wrapper .input-text{
+    flex: 1;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    border: none;
+    background: none;
+    margin-right: 10px;
+    line-height: 1.5;
+    max-height: calc(1.5em * 3);
+    overflow-y: scroll;
+}
+
+.input-wrapper .input-text::-webkit-scrollbar {
+    display: none;
+}
+  
+.send-btn {
+  border: none;
+  background-color: #001832;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.send-btn img {
+  width: 35px; 
+  height: 35px; 
+}
