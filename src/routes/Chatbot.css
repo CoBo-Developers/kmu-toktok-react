@@ -1,0 +1,76 @@
+.chatbot {
+  position: relative;
+  width: 100%;
+  padding-left: 280px;
+}
+
+.message-container-inner {
+  margin: 56px auto;
+  max-width: 800px;
+  width: 80%;
+  margin-bottom: 120px;
+}
+
+.message-wrapper {
+  display: flex;
+}
+
+.message {
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  display: inline-block;
+  max-width: 60%;
+  line-height: 20px;
+  white-space: pre-wrap;
+  font-size: 14px;
+}
+
+.message.bot {
+  background: #F0F1F3;
+}
+
+.message.user {
+  background: #001832;
+  color: white;
+  margin-left: auto;
+}
+
+.message-input-wrapper {
+  background: #F0F1F3;
+  width: 50vw;
+  max-width: 716px;
+  border-radius: 42px;
+  box-sizing: border-box;
+  padding: 5px;
+  padding-left: 30px;
+  position: fixed;
+  bottom: 40px;
+  left: calc(50% + 140px);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+#send-message {
+  width: 100%;
+  margin-right: 10px;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+  border: none;
+  background: none;
+}
+
+#send-message::-webkit-scrollbar {
+  display: none;
+}
+
+.send-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-top: auto;
+}

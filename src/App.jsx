@@ -5,6 +5,7 @@ import Login from './routes/Login';
 import Redirect from './routes/Redirect';
 import useShowAside from './hooks/useShowAside';
 import Register from './routes/Register';
+import Chatbot from './routes/Chatbot';
 import useReissue from './hooks/useReissue';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/chatbot" element={""} />
+        <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/chatprof" element={""} />
         <Route path="/file" element={""} />
         <Route path="/writing" element={""} />
