@@ -6,10 +6,12 @@ import fileIcon from '../../assets/icons/file-icon.png';
 import writingIcon from '../../assets/icons/writing-icon.png';
 import { Link, useNavigate } from 'react-router-dom';
 import useCurrentPath from '../../hooks/useCurrentPath';
+import useLastCommentStore from '../../store/useLastCommenStore';
 
 function Aside() {
   const currentPath = useCurrentPath();
   const navigate = useNavigate();
+  const lastCommentIsQuestion = useLastCommentStore((state) => state.lastCommentIsQuestion);
 
   const handleLogout = () => {
     const cookies = ['accessToken', 'refreshToken', 'isActive'];
@@ -43,6 +45,7 @@ function Aside() {
             <Link to='/chatprof'>
               <img src={personIcon} alt="person-icon" />
               <span>교수님과 대화하기</span>
+              {!lastCommentIsQuestion && <span className='aside-menus-item-alarm'></span>}
             </Link>
           </li>
           <li className={'aside-menus-item ' + (currentPath === 'file' ? 'active' : 'null')}>

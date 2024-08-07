@@ -102,3 +102,11 @@
   height: 31px;
   aspect-ratio: 1;
 }
+
+.aside-menus-item-alarm {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #65FF4D;
+  margin-left: auto;
+}
