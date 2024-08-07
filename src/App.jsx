@@ -7,6 +7,7 @@ import useShowAside from './hooks/useShowAside';
 import Register from './routes/Register';
 import Chatbot from './routes/Chatbot';
 import useReissue from './hooks/useReissue';
+import ChatProf from './routes/ChatProf';
 
 function App() {
   const showAside = useShowAside();
@@ -21,7 +22,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/chatbot" element={<Chatbot />} />
-        <Route path="/chatprof" element={""} />
+        <Route path="/chatprof" element={<ChatProf/>} />
         <Route path="/file" element={""} />
         <Route path="/writing" element={""} />
         <Route path="/redirect/:option" element={<Redirect />} />
