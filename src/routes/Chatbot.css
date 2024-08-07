@@ -24,6 +24,7 @@
   max-width: 60%;
   line-height: 20px;
   white-space: pre-wrap;
+  font-size: 14px;
 }
 
 .message.bot {

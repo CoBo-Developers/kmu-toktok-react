@@ -18,7 +18,7 @@ function useChatbot() {
   }
 
   const handleTextareaKeyUp = (e) => {
-    if (keys['Enter'] && keys['Shift']) {
+    if (keys['Enter'] && !keys['Shift']) {
       submitBtn.current.click();
     }
     let keysCopy = {...keys};
@@ -30,6 +30,9 @@ function useChatbot() {
     let keysCopy = {...keys};
     keysCopy[e.key] = true;
     setKeys(keysCopy);
+    if (e.key == 'Enter' && !keys['Shift']) {
+      e.preventDefault();
+    }
   }
 
   const handleMessageSubmit = (e) => {
