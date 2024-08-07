@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import useUserStore from '../store/useUserStore';
+import { registerApi } from '../api/registerApi';
+import { useCookies } from 'react-cookie';
 
 function useRegister() {
-  const { name, studentId, setName, setStudentId } = useUserStore();
+  const { studentId, setStudentId } = useUserStore();
+  const [name, setName] = useState('');
   const [currentStep, setCurrentStep] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
+  const [cookies, setCookie] = useCookies(['accessToken', 'refreshToken', 'isActive']);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -23,6 +27,17 @@ function useRegister() {
       if (isChecked) {
         setCurrentStep(3);
       }
+    } else if (currentStep === 3) {
+      registerApi(name, studentId, cookies.accessToken)
+        .then((response) => {
+          console.log('Register success:', response);
+          setCookie("accessToken", response.data.accessToken, { path: '/', maxAge: 2 * 60 * 60});
+          setCookie("refreshToken", response.data.refreshToken, { path: '/', maxAge: 24 * 7 * 60});
+          setCookie('isActive', response.data.registerStateEnum, { path: '/', maxAge: 2 * 60 * 60});
+        })
+        .catch((error) => {
+          console.error(error.message);
+        });
     }
   };
 

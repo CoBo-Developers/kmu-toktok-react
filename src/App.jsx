@@ -2,12 +2,15 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Aside from './components/aside/Aside'
 import Login from './routes/Login';
+import Redirect from './routes/Redirect';
 import useShowAside from './hooks/useShowAside';
 import Register from './routes/Register';
 import Chatbot from './routes/Chatbot';
+import useReissue from './hooks/useReissue';
 
 function App() {
   const showAside = useShowAside();
+  useReissue();
 
   return (
     <div className="page">
@@ -21,6 +24,7 @@ function App() {
         <Route path="/chatprof" element={""} />
         <Route path="/file" element={""} />
         <Route path="/writing" element={""} />
+        <Route path="/redirect/:option" element={<Redirect />} />
       </Routes>
     </div>
   )
