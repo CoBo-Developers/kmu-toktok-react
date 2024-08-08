@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { getChat, postChat } from '../api/chatProfApi';
+import useLastCommentStore from '../store/useLastCommenStore';
 import { useCookies } from 'react-cookie';
 
 const useChatProf = () => {
@@ -9,6 +10,7 @@ const useChatProf = () => {
   const inputRef = useRef();
   const chatListRef = useRef();
   const sendRef = useRef();
+  const setLastCommentIsQuestion = useLastCommentStore((state) => state.setLastCommentIsQuestion);
 
   useEffect(() => {
     if (chatListRef.current) {
@@ -20,6 +22,7 @@ const useChatProf = () => {
     getChat(cookies.accessToken)
       .then((chat) => {
         setChatList(chat.data);
+        setLastCommentIsQuestion(chat.data[chat.data.length - 1].question);
       })
       .catch((error) => {
         console.error(error);

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { getChat, postChat } from '../api/chatApi';
+import { getChat, postChat } from '../api/chatBotApi';
 import { useCookies } from 'react-cookie';
 
 function useChatbot() {
