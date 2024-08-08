@@ -7,10 +7,13 @@ import writingIcon from '../../assets/icons/writing-icon.png';
 import { Link, useNavigate } from 'react-router-dom';
 import useCurrentPath from '../../hooks/useCurrentPath';
 import useLastCommentStore from '../../store/useLastCommenStore';
+import useShowExtend from '../../hooks/useShowExtend';
+import WritingMenu from './WritingMenu/WritingMenu';
 
 function Aside() {
   const currentPath = useCurrentPath();
   const navigate = useNavigate();
+  const showExtend = useShowExtend();
   const lastCommentIsQuestion = useLastCommentStore((state) => state.lastCommentIsQuestion);
 
   const handleLogout = () => {
@@ -62,8 +65,14 @@ function Aside() {
           </li>
         </ul>
       </section>
-      <section>
-
+      <section className={'aside-extend-menu ' + (
+        showExtend ?
+        'active' : null
+        )}>
+          {
+            currentPath === 'writing' ? 
+            <WritingMenu /> : null
+          }
       </section>
     </aside>
   )
