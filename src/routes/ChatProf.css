@@ -1,20 +1,21 @@
 .chat-container {
-    padding: 56px 0;
     height: 100dvh;
     width: 100%;
-    max-width: 980px;
     margin: 0 auto ;
     box-sizing: border-box;
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 20px
+    padding-left: 280px;
 }
 .chat-wrapper {
+    margin: 56px auto;
+    max-width: 800px;
+    width: 80%;
     flex: 1;
-    margin: 0 40px;
     box-sizing: border-box;
     overflow-y: scroll;
+    margin-bottom: 120px;
 }
 .chat-wrapper::-webkit-scrollbar {
     display: none;

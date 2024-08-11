@@ -1,6 +1,6 @@
-import sendIcon from '../assets/icons/send-icon.png';
-import useChatbot from '../hooks/useChatbot';
 import './Chatbot.css';
+import useChatbot from '../hooks/useChatbot';
+import MessageInput from '../components/MessageInput';
 
 function Chatbot() {
   const {
@@ -45,16 +45,14 @@ function Chatbot() {
         </article>
         <div ref={chatListRef}></div>
       </section>
-      <section className="message-input-wrapper">
-        <textarea name="send-message" id="send-message" rows={1} 
-          placeholder="질문을 입력해주세요" ref={textarea} 
-          onChange={handleTextareaChange}
-          onKeyUp={handleTextareaKeyUp}
-          onKeyDown={handleTextareaKeyDown}></textarea>
-        <button className='send-btn' onClick={handleMessageSubmit} ref={submitBtn}>
-          <img src={sendIcon} alt="send-icon" />
-        </button>
-      </section>
+      <MessageInput
+        textarea={textarea}
+        handleTextareaChange={handleTextareaChange}
+        handleTextareaKeyDown={handleTextareaKeyDown}
+        handleTextareaKeyUp={handleTextareaKeyUp}
+        handleMessageSubmit={handleMessageSubmit}
+        submitBtn={submitBtn}
+      />
     </main>
   )
 }
