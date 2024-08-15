@@ -2,20 +2,31 @@ import './Writing.css';
 import { useParams } from 'react-router-dom';
 import useWriting from '../hooks/useWriting';
 import { formatAssignmentTime } from '../utils/dateAndTime';
+import { writingStateEnum } from '../utils/writingEnum';
 
 function Writing() {
     const { writingId } = useParams();
     const {
         content,
-        setContent,
-        feedbackActive,
         assignment,
         feedback,
         handleSaveClick,
         handleFeedbackClick,
+        isContentModified,
+        handleContentChange,
     } = useWriting(writingId);
 
     if (!assignment) return <div>Loading...</div>;
+
+    const state = Object.values(writingStateEnum).find(state => state.state === assignment.writingState) || {
+        text: '',
+        className: '',
+    };
+
+    const getSaveButtonText = () => {
+        if (isContentModified) return '다시 제출';
+        return state.text === '' ? '제출' : state.text;
+    };
 
     return (
         <main className='writing-main'>
@@ -25,10 +36,18 @@ function Writing() {
             <section className='writing-container'>
                 <article className='button-container'>
                     <button className='save-button' onClick={handleSaveClick}>
-                        {assignment.writingState === 1 ? '다시제출' : '제출'}
+                        {!isContentModified && <span className={`writing-state-color ${state.className || ''}`}></span>}
+                        {getSaveButtonText()}
+                        {!isContentModified && state.state === 3 && (
+                            <div className='writing-score-wrapper'>
+                                <span className='my-writing-score'>{assignment.writingScore}</span>
+                                /
+                                <span className='total-writing-score'>{assignment.score} 점</span>
+                            </div>
+                        )}
                     </button>
                     <button
-                        className={feedbackActive ? 'feedback-button inactive' : 'feedback-button'}
+                        className={isContentModified ? 'feedback-button inactive' : 'feedback-button'}
                         onClick={handleFeedbackClick}
                     >
                         피드백
@@ -54,7 +73,7 @@ function Writing() {
                         <textarea
                             className='writing-content'
                             value={content}
-                            onChange={(e) => setContent(e.target.value)}
+                            onChange={(e) => handleContentChange(e.target.value)}
                         />
                     </div>
                     <hr />

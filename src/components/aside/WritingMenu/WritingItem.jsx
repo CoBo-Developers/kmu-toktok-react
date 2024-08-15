@@ -1,21 +1,11 @@
 /* eslint-disable react/prop-types */
 import './WritingItem.css';
+import { writingStateEnum} from '../../../utils/writingEnum';
 
 const WritingItem = ({ item, onClick}) => {
-    const getStateText = (writingState) => {
-        switch (writingState) {
-            case 0:
-                return { text: '', className: 'not-submitted' };
-            case 1:
-                return { text: '제출완료', className: 'submitted' };
-            case 2:
-                return { text: '부정제출', className: 'not-approved' };
-            case 3:
-                return { text: '제출승인', className: 'approved' };
-        }
-    };
+    const state = Object.values(writingStateEnum).find(state => state.state === item.writingState) || {};
 
-    const { text, className } = getStateText(item.writingState);
+    const { text = '', className = '' } = state;
 
     return (
         <li className={`writing-item ${className}`} onClick={onClick}>

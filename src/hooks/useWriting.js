@@ -6,7 +6,8 @@ import useWritingStore from '../store/useWritingStore';
 const useWriting = (writingId) => {
     const [cookies] = useCookies(['accessToken']);
     const [content, setContent] = useState('');
-    const [feedbackActive, setFeedbackActive] = useState(false);
+    const [originalContent, setOriginalContent] = useState('');
+    const [isContentModified, setIsContentModified] = useState(false);
     const [assignment, setAssignment] = useState(null);
     const [feedback, setFeedback] = useState('');
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
@@ -15,22 +16,29 @@ const useWriting = (writingId) => {
         const assignment = writingList.find((item) => item.id === parseInt(writingId));
         if (!assignment) return;
         setAssignment(assignment);
-        setFeedbackActive(assignment.writingState === 1);
 
         getWriting(cookies.accessToken, writingId)
             .then((res) => {
                 setContent(res.data.content);
+                setOriginalContent(res.data.content);
+                setIsContentModified(false);
             })
             .catch((error) => {
                 alert(error.message);
             });
     }, [writingId, cookies.accessToken, writingList]);
 
+    const handleContentChange = (newContent) => {
+        setContent(newContent);
+        setIsContentModified(newContent !== originalContent);
+    };
+
     const handleSaveClick = () => {
         postWriting(cookies.accessToken, writingId, 1, content)
             .then(() => {
                 alert('과제가 제출되었습니다.');
-                setFeedbackActive(false);
+                setOriginalContent(content);
+                setIsContentModified(false);
             })
             .catch((error) => {
                 alert(error.message);
@@ -49,12 +57,12 @@ const useWriting = (writingId) => {
 
     return {
         content,
-        setContent,
-        feedbackActive,
         assignment,
         feedback,
         handleSaveClick,
         handleFeedbackClick,
+        isContentModified,
+        handleContentChange,
     };
 };
 
