@@ -110,3 +110,21 @@
   background-color: #65FF4D;
   margin-left: auto;
 }
+
+.aside-extend-menu {
+  width: 280px;
+  height: 100dvh;
+  transition: all 0.5s;
+  border-radius: 0 30px 30px 0;
+  background: #193553;
+  position: fixed;
+  top: 0;
+  z-index: 800;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.aside-extend-menu.active {
+  width: 560px;
+  padding-left: calc(280px + 28px);
+}

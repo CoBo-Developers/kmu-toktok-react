@@ -9,4 +9,23 @@ const formatTime = (dateString) => {
     return date.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
 }
 
-export { formatDate, formatTime };
+const formatAssignmentTime = (fromDate, toDate) => {
+    const getFormattedDate = (dateStr) => {
+        const date = new Date(dateStr);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+
+        const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+        const dayName = dayOfWeek[date.getDay()];
+
+        return `${year}.${month}.${day}(${dayName})`;
+    };
+
+    const from = getFormattedDate(fromDate);
+    const to = getFormattedDate(toDate);
+
+    return `${from} - ${to}`;
+};
+
+export { formatDate, formatTime, formatAssignmentTime };
