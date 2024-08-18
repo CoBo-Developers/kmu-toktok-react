@@ -22,6 +22,7 @@ const useWriting = (writingId) => {
             .then((res) => {
                 setContent(res.data.content);
                 setOriginalContent(res.data.content);
+                setFeedback('');
             })
             .catch((error) => {
                 alert(error.message);
@@ -41,7 +42,11 @@ const useWriting = (writingId) => {
                 setIsContentModified(false);
             })
             .catch((error) => {
-                alert(error.message);
+                if (error.message === 'EXPIRED_ASSIGNMENT') {
+                    alert('과제 제출 기간이 아닙니다.');
+                } else {
+                    alert(error.message);
+                }
             });
     };
 
