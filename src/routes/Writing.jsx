@@ -8,12 +8,12 @@ function Writing() {
     const { writingId } = useParams();
     const {
         content,
+        setContent,
         assignment,
         feedback,
         handleSaveClick,
         handleFeedbackClick,
-        isContentModified,
-        handleContentChange,
+        isFeedbackActive,
     } = useWriting(writingId);
 
     if (!assignment) return <div>Loading...</div>;
@@ -24,8 +24,8 @@ function Writing() {
     };
 
     const getSaveButtonText = () => {
-        if (isContentModified) return '다시 제출';
-        return state.text === '' ? '제출' : state.text;
+       if (state.state === 1) return '다시 제출';
+       return state.text === '' ? '제출' : state.text;
     };
 
     return (
@@ -36,9 +36,11 @@ function Writing() {
             <section className='writing-container'>
                 <article className='button-container'>
                     <button className='save-button' onClick={handleSaveClick}>
-                        {!isContentModified && <span className={`writing-state-color ${state.className || ''}`}></span>}
+                        {(state.state === 2 || state.state === 3) && (
+                            <span className={`writing-state-color ${state.className || ''}`}></span>
+                        )}
                         {getSaveButtonText()}
-                        {!isContentModified && state.state === 3 && (
+                        {state.state === 3 && (
                             <div className='writing-score-wrapper'>
                                 <span className='my-writing-score'>{assignment.writingScore}</span>
                                 /
@@ -47,7 +49,7 @@ function Writing() {
                         )}
                     </button>
                     <button
-                        className={isContentModified ? 'feedback-button inactive' : 'feedback-button'}
+                        className={!isFeedbackActive ? 'feedback-button inactive' : 'feedback-button'}
                         onClick={handleFeedbackClick}
                     >
                         피드백
@@ -73,7 +75,7 @@ function Writing() {
                         <textarea
                             className='writing-content'
                             value={content}
-                            onChange={(e) => handleContentChange(e.target.value)}
+                            onChange={(e) => setContent(e.target.value)}
                         />
                     </div>
                     <hr />
