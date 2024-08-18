@@ -14,6 +14,7 @@ function Writing() {
         handleSaveClick,
         handleFeedbackClick,
         isFeedbackActive,
+        isWaitingForFeedback,
     } = useWriting(writingId);
 
     if (!assignment) return <div>Loading...</div>;
@@ -80,7 +81,7 @@ function Writing() {
                     </div>
                     <hr />
                     <div>
-                        <div><span className='writing-label'>피드백</span></div>
+                        <div><span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span></div>
                         <textarea
                             className='feedback-content'
                             value={feedback}

@@ -9,6 +9,7 @@ const useWriting = (writingId) => {
     const [assignment, setAssignment] = useState(null);
     const [feedback, setFeedback] = useState(''); 
     const [isFeedbackActive, setIsFeedbackActive] = useState(false);
+    const [isWaitingForFeedback, setIsWaitingForFeedback] = useState(false);
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
 
     useEffect(() => {
@@ -37,12 +38,15 @@ const useWriting = (writingId) => {
     };
 
     const handleFeedbackClick = () => {
+        setIsWaitingForFeedback(true);
         getFeedback(cookies.accessToken, writingId, content)
             .then((res) => {
                 setFeedback(res.data.feedback);
+                setIsWaitingForFeedback(false);
             })
             .catch((error) => {
                 alert(error.message);
+                setIsWaitingForFeedback(false);
             });
     };
 
@@ -54,6 +58,7 @@ const useWriting = (writingId) => {
         handleSaveClick,
         handleFeedbackClick,
         isFeedbackActive,
+        isWaitingForFeedback
     };
 };
 
