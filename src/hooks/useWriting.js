@@ -5,10 +5,11 @@ import useWritingStore from '../store/useWritingStore';
 
 const useWriting = (writingId) => {
     const [cookies] = useCookies(['accessToken']);
-    const [content, setContent] = useState(''); 
+    const [content, setContent] = useState('');
+    const [originalContent, setOriginalContent] = useState('');
     const [assignment, setAssignment] = useState(null);
-    const [feedback, setFeedback] = useState(''); 
-    const [isFeedbackActive, setIsFeedbackActive] = useState(false);
+    const [feedback, setFeedback] = useState('');
+    const [isContentModified, setIsContentModified] = useState(false);
     const [isWaitingForFeedback, setIsWaitingForFeedback] = useState(false);
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
 
@@ -20,17 +21,24 @@ const useWriting = (writingId) => {
         getWriting(cookies.accessToken, writingId)
             .then((res) => {
                 setContent(res.data.content);
+                setOriginalContent(res.data.content);
             })
             .catch((error) => {
                 alert(error.message);
             });
     }, [writingId, cookies.accessToken, writingList]);
 
+    const handleContentChange = (newContent) => {
+        setContent(newContent);
+        setIsContentModified(newContent !== originalContent);
+    };
+
     const handleSaveClick = () => {
         postWriting(cookies.accessToken, writingId, 1, content)
             .then(() => {
                 alert('과제가 제출되었습니다.');
-                setIsFeedbackActive(true);
+                setOriginalContent(content);
+                setIsContentModified(false);
             })
             .catch((error) => {
                 alert(error.message);
@@ -52,12 +60,12 @@ const useWriting = (writingId) => {
 
     return {
         content,
-        setContent,
+        handleContentChange,
         assignment,
         feedback,
         handleSaveClick,
         handleFeedbackClick,
-        isFeedbackActive,
+        isContentModified,
         isWaitingForFeedback
     };
 };

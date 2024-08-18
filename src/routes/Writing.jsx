@@ -8,12 +8,12 @@ function Writing() {
     const { writingId } = useParams();
     const {
         content,
-        setContent,
+        handleContentChange,
         assignment,
         feedback,
         handleSaveClick,
         handleFeedbackClick,
-        isFeedbackActive,
+        isContentModified,
         isWaitingForFeedback,
     } = useWriting(writingId);
 
@@ -50,8 +50,9 @@ function Writing() {
                         )}
                     </button>
                     <button
-                        className={!isFeedbackActive ? 'feedback-button inactive' : 'feedback-button'}
+                        className={!isContentModified ? 'feedback-button inactive' : 'feedback-button'}
                         onClick={handleFeedbackClick}
+                        disabled={!isContentModified}
                     >
                         피드백
                     </button>
@@ -76,7 +77,7 @@ function Writing() {
                         <textarea
                             className='writing-content'
                             value={content}
-                            onChange={(e) => setContent(e.target.value)}
+                            onChange={(e) => handleContentChange(e.target.value)}
                         />
                     </div>
                     <hr />
