@@ -8,12 +8,13 @@ function Writing() {
     const { writingId } = useParams();
     const {
         content,
+        handleContentChange,
         assignment,
         feedback,
         handleSaveClick,
         handleFeedbackClick,
         isContentModified,
-        handleContentChange,
+        isWaitingForFeedback,
     } = useWriting(writingId);
 
     if (!assignment) return <div>Loading...</div>;
@@ -24,8 +25,8 @@ function Writing() {
     };
 
     const getSaveButtonText = () => {
-        if (isContentModified) return '다시 제출';
-        return state.text === '' ? '제출' : state.text;
+       if (state.state === 1) return '다시 제출';
+       return state.text === '' ? '제출' : state.text;
     };
 
     return (
@@ -36,9 +37,11 @@ function Writing() {
             <section className='writing-container'>
                 <article className='button-container'>
                     <button className='save-button' onClick={handleSaveClick}>
-                        {!isContentModified && <span className={`writing-state-color ${state.className || ''}`}></span>}
+                        {(state.state === 2 || state.state === 3) && (
+                            <span className={`writing-state-color ${state.className || ''}`}></span>
+                        )}
                         {getSaveButtonText()}
-                        {!isContentModified && state.state === 3 && (
+                        {state.state === 3 && (
                             <div className='writing-score-wrapper'>
                                 <span className='my-writing-score'>{assignment.writingScore}</span>
                                 /
@@ -47,8 +50,9 @@ function Writing() {
                         )}
                     </button>
                     <button
-                        className={isContentModified ? 'feedback-button inactive' : 'feedback-button'}
+                        className={!isContentModified ? 'feedback-button inactive' : 'feedback-button'}
                         onClick={handleFeedbackClick}
+                        disabled={!isContentModified}
                     >
                         피드백
                     </button>
@@ -78,7 +82,7 @@ function Writing() {
                     </div>
                     <hr />
                     <div>
-                        <div><span className='writing-label'>피드백</span></div>
+                        <div><span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span></div>
                         <textarea
                             className='feedback-content'
                             value={feedback}

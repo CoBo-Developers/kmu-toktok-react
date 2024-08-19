@@ -95,7 +95,8 @@
     background-color: #E6E8EB;
     margin: 0;
 }
-.writing-label {
+.writing-label,
+.feedback-label {
     font-size: 14px;
     color: #000;
     font-weight: 400;
@@ -119,6 +120,23 @@
     font-size: 14px;
     line-height: 20px;
 }
+
+@keyframes blink {
+    0% {
+        background-color: #F0F1F3;
+    }
+    50% {
+        background-color: #ADD3FF;
+    }
+    100% {
+        background-color: #F0F1F3;
+    }
+}
+
+.blink-effect{
+    animation: blink 0.7s step-start 0s infinite;
+}
+
 .writing-content:focus {
     outline: 1px solid #a7a8ab;
     border-radius: 5px;

@@ -7,9 +7,10 @@ const useWriting = (writingId) => {
     const [cookies] = useCookies(['accessToken']);
     const [content, setContent] = useState('');
     const [originalContent, setOriginalContent] = useState('');
-    const [isContentModified, setIsContentModified] = useState(false);
     const [assignment, setAssignment] = useState(null);
     const [feedback, setFeedback] = useState('');
+    const [isContentModified, setIsContentModified] = useState(false);
+    const [isWaitingForFeedback, setIsWaitingForFeedback] = useState(false);
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
 
     useEffect(() => {
@@ -21,7 +22,7 @@ const useWriting = (writingId) => {
             .then((res) => {
                 setContent(res.data.content);
                 setOriginalContent(res.data.content);
-                setIsContentModified(false);
+                setFeedback('');
             })
             .catch((error) => {
                 alert(error.message);
@@ -41,28 +42,36 @@ const useWriting = (writingId) => {
                 setIsContentModified(false);
             })
             .catch((error) => {
-                alert(error.message);
+                if (error.message === 'EXPIRED_ASSIGNMENT') {
+                    alert('과제 제출 기간이 아닙니다.');
+                } else {
+                    alert(error.message);
+                }
             });
     };
 
     const handleFeedbackClick = () => {
+        setIsWaitingForFeedback(true);
         getFeedback(cookies.accessToken, writingId, content)
             .then((res) => {
                 setFeedback(res.data.feedback);
+                setIsWaitingForFeedback(false);
             })
             .catch((error) => {
                 alert(error.message);
+                setIsWaitingForFeedback(false);
             });
     };
 
     return {
         content,
+        handleContentChange,
         assignment,
         feedback,
         handleSaveClick,
         handleFeedbackClick,
         isContentModified,
-        handleContentChange,
+        isWaitingForFeedback
     };
 };
 
