@@ -11,6 +11,7 @@ import useCurrentPath from '../../hooks/useCurrentPath';
 import useLastCommentStore from '../../store/useLastCommenStore';
 import useShowExtend from '../../hooks/useShowExtend';
 import WritingMenu from './WritingMenu/WritingMenu';
+import useIsMobile from '../../hooks/useIsMobile';
 
 function Aside() {
   const [isMenuVisible, setMenuVisible] = useState(false);
@@ -18,14 +19,15 @@ function Aside() {
   const navigate = useNavigate();
   const showExtend = useShowExtend();
   const lastCommentIsQuestion = useLastCommentStore((state) => state.lastCommentIsQuestion);
+  const isMobile = useIsMobile();
 
   const handleLogout = () => {
     const cookies = ['accessToken', 'refreshToken', 'isActive'];
-  
+
     cookies.forEach(cookie => {
       document.cookie = `${cookie}=; path=/; max-age=0`;
     });
-  
+
     navigate('/');
   };
 
@@ -33,10 +35,10 @@ function Aside() {
     <aside className='aside'>
       <section className={`mobile-aside-menu ${isMenuVisible ? 'visible' : ''}`}>
         <h1 className='aside-title'>kmu toktok-.</h1>
-        <img 
-          className='mobile-aside-icon' 
-          src={mobileAsideIcon} 
-          alt="mobile-aside-icon" 
+        <img
+          className='mobile-aside-icon'
+          src={mobileAsideIcon}
+          alt="mobile-aside-icon"
           onClick={()=>setMenuVisible(!isMenuVisible)}
         />
       </section>
@@ -75,17 +77,20 @@ function Aside() {
               <span>나의 글쓰기</span>
             </Link>
           </li>
+          {isMobile && currentPath === 'writing' && <WritingMenu />}
         </ul>
       </section>
-      <section className={'aside-extend-menu ' + (
-        showExtend ?
-        'active' : null
-        )}>
-          {
-            currentPath === 'writing' ? 
-            <WritingMenu /> : null
-          }
-      </section>
+      {!isMobile && (
+        <section className={'aside-extend-menu ' + (
+          showExtend ?
+          'active' : null
+          )}>
+            {
+              currentPath === 'writing' ? 
+              <WritingMenu /> : null
+            }
+        </section>
+      )}
     </aside>
   )
 }

@@ -191,3 +191,20 @@
 .total-writing-score {
     font-size: 10px;
 }
+
+
+@media screen and (max-width: 900px) {
+    .writing-main {
+        padding-left: 0;
+    }
+    .writing-container {
+        padding-left: 0;
+        margin: 20px 10px;
+    }
+    .writing-menu > h2 {
+        display: none;
+    }
+    .total-score-container {
+        margin-top: 10px;
+    }
+}
