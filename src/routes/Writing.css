@@ -207,4 +207,10 @@
     .total-score-container {
         margin-top: 10px;
     }
+    .writing-header-container {
+        padding-top: 58px;
+        border-radius: 0 0 16px 16px;
+        padding-left: 30px;
+        background-color: #193553;
+    }
 }
