@@ -1,6 +1,7 @@
 import './Chatbot.css';
 import useChatbot from '../hooks/useChatbot';
 import MessageInput from '../components/MessageInput';
+import Loading from '../components/Loading/Loading';
 
 function Chatbot() {
   const {
@@ -35,13 +36,13 @@ function Chatbot() {
                   </div>
                   <div className='message-wrapper'>
                     <div className="message bot">
-                      { item.answer || "Loading..." }
+                      { item.answer || <Loading /> }
                     </div>
                   </div>
                 </div>
               )
             })
-          }
+          }   
         </article>
         <div ref={chatListRef}></div>
       </section>
