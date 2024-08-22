@@ -1,4 +1,5 @@
 import './Writing.css';
+import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import useWriting from '../hooks/useWriting';
 import { formatAssignmentTime } from '../utils/dateAndTime';
@@ -16,6 +17,22 @@ function Writing() {
         isContentModified,
         isWaitingForFeedback,
     } = useWriting(writingId);
+    const writingRef = useRef();
+    const feedbackRef = useRef();
+
+    useEffect(() => {
+        if (writingRef?.current) {
+            writingRef.current.style.height = 'auto';
+            writingRef.current.style.height = `${writingRef.current.scrollHeight}px`;
+        }
+    }, [content]);
+
+    useEffect(() => {
+        if (feedbackRef?.current) {
+            feedbackRef.current.style.height = 'auto';
+            feedbackRef.current.style.height = `${feedbackRef.current.scrollHeight}px`;
+        }
+    }, [feedback]);
 
     if (!assignment) return <div>Loading...</div>;
 
@@ -75,18 +92,22 @@ function Writing() {
                     <div>
                         <div><span className='writing-label'>나의 글</span></div>
                         <textarea
-                            className='writing-content'
+                            name='writing-content'
+                            id='writing-content'
                             value={content}
                             onChange={(e) => handleContentChange(e.target.value)}
+                            ref={writingRef}
                         />
                     </div>
                     <hr />
                     <div>
                         <div><span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span></div>
                         <textarea
-                            className='feedback-content'
+                            name='feedback-content'
+                            id='feedback-content'
                             value={feedback}
                             readOnly
+                            ref={feedbackRef}
                         />
                     </div>
                 </article>

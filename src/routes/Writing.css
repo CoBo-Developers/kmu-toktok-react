@@ -110,13 +110,12 @@
     display: flex;
     flex-direction: column;
 }
-.writing-content,
-.feedback-content {
+#writing-content,
+#feedback-content {
     border: none;
     width: 100%;
     padding: 5px;
     margin-top: 10px;
-    flex: 1;
     font-size: 14px;
     line-height: 20px;
     resize: none;
@@ -138,27 +137,9 @@
     animation: blink 0.7s step-start 0s infinite;
 }
 
-.writing-content:focus {
+#writing-content:focus{
     outline: 1px solid #a7a8ab;
     border-radius: 5px;
-}
-.feedback-content:focus {
-    outline: none;
-}
-.writing-content::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-.writing-content::-webkit-scrollbar-track {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-}
-
-.writing-content::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 10px;
-    border: 2px solid #f0f0f0;
 }
 
 .writing-state-color {
