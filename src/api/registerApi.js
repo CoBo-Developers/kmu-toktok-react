@@ -1,6 +1,6 @@
 
 const registerApi = async (name, studentId, accessToken) => {
-    const res = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/auth/register`, {
+    const res = await fetch(`${import.meta.env.VITE_APP_AUTH_API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
