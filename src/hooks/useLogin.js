@@ -7,10 +7,10 @@ function useLogin() {
   const [cookies, setCookie] = useCookies(['accessToken', 'refreshToken', 'isActive']);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const code = searchParams.get('code');
-  const { option } = useParams(); 
+  const { option } = useParams();
 
   useEffect(() => {
+    const code = searchParams.get('code');
     if (code && option) {
       loginApi(code, option)
         .then((response) => {
@@ -26,13 +26,13 @@ function useLogin() {
       alert('잘못된 접근입니다.');
       navigate('/');
     }
-  }, [code, option]);
+  }, [searchParams]);
 
   useEffect(() => {
-    if (cookies.accessToken && cookies.isActive === 'ACTIVE') {
+    if (cookies.accessToken && cookies.refreshToken && cookies.isActive === 'ACTIVE') {
       navigate('/chatbot');
     }
-    else{
+    else if (cookies.accessToken && cookies.refreshToken && cookies.isActive === 'INACTIVE') {
       navigate('/register');
     }
   }, [cookies]);

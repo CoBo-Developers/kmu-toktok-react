@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useUserStore from '../store/useUserStore';
 import { registerApi } from '../api/registerApi';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function useRegister() {
   const { studentId, setStudentId } = useUserStore();
@@ -9,6 +10,7 @@ function useRegister() {
   const [currentStep, setCurrentStep] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
   const [cookies, setCookie] = useCookies(['accessToken', 'refreshToken', 'isActive']);
+  const navigate = useNavigate();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -30,13 +32,12 @@ function useRegister() {
     } else if (currentStep === 3) {
       registerApi(name, studentId, cookies.accessToken)
         .then((response) => {
-          console.log('Register success:', response);
-          setCookie("accessToken", response.data.accessToken, { path: '/', maxAge: 2 * 60 * 60});
-          setCookie("refreshToken", response.data.refreshToken, { path: '/', maxAge: 24 * 7 * 60});
-          setCookie('isActive', response.data.registerStateEnum, { path: '/', maxAge: 2 * 60 * 60});
+          setCookie('isActive', 'ACTIVE', { path: '/', maxAge: 2 * 60 * 60 });
+          alert('회원가입 완료되었습니다');
+          navigate('/chatbot');
         })
         .catch((error) => {
-          console.error(error.message);
+          alert(error.message);
         });
     }
   };
