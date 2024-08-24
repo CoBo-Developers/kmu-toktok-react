@@ -35,3 +35,12 @@
     cursor: pointer;
     margin-top: auto;
   }
+
+  @media screen and (max-width: 900px) {
+    .message-input-wrapper {
+      left: calc(50%);
+      transform: translateX(-50%);
+      width: 80vw;
+      bottom: 20px;
+    }
+  }

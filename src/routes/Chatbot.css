@@ -36,3 +36,12 @@
   color: white;
   margin-left: auto;
 }
+
+@media screen and (max-width: 900px) {
+  .chatbot {
+    padding-left: 0;
+  }
+  .message-container-inner {
+    width: 90%;
+  }
+}
