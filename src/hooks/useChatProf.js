@@ -61,6 +61,7 @@ const useChatProf = () => {
       .catch((error) => {
         alert(error.message);
       });
+    inputRef.current.value = '';
   };
 
   const handleKeyUp = (e) => {
