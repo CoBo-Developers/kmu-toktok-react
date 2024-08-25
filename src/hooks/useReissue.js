@@ -27,7 +27,7 @@ function useReissue() {
         });
     } else if (cookies.accessToken && cookies.refreshToken && cookies.isActive === 'INACTIVE' && currentPath !== 'register') {
       navigate('/register');
-    } else if (!cookies.accessToken && !cookies.refreshToken && currentPath !== '') {
+    } else if (!cookies.accessToken && !cookies.refreshToken && currentPath !== '' && currentPath !== 'redirect') {
       navigate('/');
     }
   }, [cookies, currentPath]);
