@@ -24,7 +24,7 @@ function Aside() {
   const isMobile = useIsMobile();
 
   const handleLogout = () => {
-    const cookies = ['accessToken', 'refreshToken', 'isActive'];
+    const cookies = ['accessToken', 'refreshToken', 'isActive', 'studentId'];
 
     cookies.forEach(cookie => {
       document.cookie = `${cookie}=; path=/; max-age=0`;
