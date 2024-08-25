@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { reissueApi } from '../api/authApi';
 import { useCookies } from 'react-cookie';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useCurrentPath from "../hooks/useCurrentPath";
 
 function useReissue() {
-  const [cookies, setCookie, removeCookie] = useCookies(['accessToken', 'refreshToken', 'isActive']);
+  const [cookies, setCookie, removeCookie] = useCookies(['accessToken', 'refreshToken', 'isActive', 'studentId']);
   const navigate = useNavigate();
-  const location = useLocation();
+  const currentPath = useCurrentPath();
 
   useEffect(() => {
     if (!cookies.accessToken && cookies.refreshToken) {
@@ -26,10 +27,10 @@ function useReissue() {
         });
     } else if (cookies.accessToken && cookies.refreshToken && cookies.isActive === 'INACTIVE') {
       navigate('/register');
-    } else if (!cookies.accessToken && !cookies.refreshToken) {
+    } else if (!cookies.accessToken && !cookies.refreshToken && currentPath !== '') {
       navigate('/');
     }
-  }, [cookies, location]);
+  }, [cookies, currentPath]);
 }
 
 export default useReissue;
