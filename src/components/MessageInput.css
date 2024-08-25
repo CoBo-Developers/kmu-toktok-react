@@ -22,18 +22,16 @@
     font-size: 16px;
     border: none;
     background: none;
+    max-height: calc(1.5em * 5);
+    line-height: 1.5em;
+    overflow-y: auto;
   }
   
-  #send-message::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .send-btn {
-    padding: 0;
-    border: none;
-    background: none;
+  .send-btn img {
+    width: 35px;
+    height: 35px;
+
     cursor: pointer;
-    margin-top: auto;
   }
 
   @media screen and (max-width: 900px) {
