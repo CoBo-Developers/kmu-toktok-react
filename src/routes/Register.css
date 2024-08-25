@@ -173,6 +173,7 @@
     gap:5px;
     font-size: 12px;
     width: 100%;
+    align-items: self-start;
 }
 .register-content-right .input-wrapper input{
     border: none;

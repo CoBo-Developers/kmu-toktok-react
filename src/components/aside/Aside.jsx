@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Aside.css';
+import { useCookies } from 'react-cookie';
 import tagIcon from '../../assets/icons/tag-icon.png';
 import chatIcon from '../../assets/icons/chat-icon.png';
 import personIcon from '../../assets/icons/person-icon.png';
@@ -14,6 +15,7 @@ import WritingMenu from './WritingMenu/WritingMenu';
 import useIsMobile from '../../hooks/useIsMobile';
 
 function Aside() {
+  const [cookies] = useCookies(['studentId']);
   const [isMenuVisible, setMenuVisible] = useState(false);
   const currentPath = useCurrentPath();
   const navigate = useNavigate();
@@ -47,7 +49,7 @@ function Aside() {
         <section className='aside-user-info'>
           <img className='aside-user-info-icon' src={tagIcon} alt="tag-icon" />
           <article className='aside-user-info-content'>
-            <span className='aside-id'>2022123455</span>
+            <span className='aside-id'>{cookies.studentId || ' '}</span>
             <span className='aside-logout' onClick={handleLogout}>로그아웃</span>
           </article>
         </section>
