@@ -35,6 +35,7 @@ function useRegister() {
           setCookie('accessToken', response.data.accessToken, { path: '/', maxAge: 2 * 60 * 60 });
           setCookie('refreshToken', response.data.refreshToken, { path: '/', maxAge: 24 * 7 * 60 });
           setCookie('isActive', response.data.registerStateEnum, { path: '/', maxAge: 2 * 60 * 60 });
+          setCookie('studentId',response.data.studentId, { path: '/', maxAge: 2 * 60 * 60 });
           alert('회원가입 완료되었습니다');
           navigate('/chatbot');
         })
