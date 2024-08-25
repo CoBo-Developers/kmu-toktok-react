@@ -25,7 +25,7 @@ function useReissue() {
           removeCookie('isActive');
           removeCookie('studentId');
         });
-    } else if (cookies.accessToken && cookies.refreshToken && cookies.isActive === 'INACTIVE') {
+    } else if (cookies.accessToken && cookies.refreshToken && cookies.isActive === 'INACTIVE' && currentPath !== 'register') {
       navigate('/register');
     } else if (!cookies.accessToken && !cookies.refreshToken && currentPath !== '') {
       navigate('/');
