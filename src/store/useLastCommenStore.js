@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 const useLastCommentStore = create((set) => ({
-  lastCommentIsQuestion: '',
+  lastCommentIsQuestion: false,
   setLastCommentIsQuestion: (lastCommentIsQuestion) => set({ lastCommentIsQuestion: lastCommentIsQuestion }),
 }));
 
