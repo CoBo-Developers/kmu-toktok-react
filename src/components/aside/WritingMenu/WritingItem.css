@@ -29,10 +29,10 @@
     margin-left: 5px;
     display: inline-block;
 }
-.writing-state-color.submitted {
+.writing-state-color.approved {
     background-color: #65FF4D;
 }
-.writing-state-color.approved{
+.writing-state-color.submmited {
     background-color: #FFA24D;
 }
 .writing-state-color.not-approved{

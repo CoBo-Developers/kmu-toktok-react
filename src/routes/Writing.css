@@ -120,6 +120,9 @@
     line-height: 20px;
     resize: none;
 }
+#feedback-content:focus {
+    outline: none;
+}
 
 @keyframes blink {
     0% {
@@ -149,10 +152,10 @@
     margin-right: 5px;
     display: inline-block;
 }
-.writing-state-color.submitted {
+.writing-state-color.approve {
     background-color: #65FF4D;
 }
-.writing-state-color.approved{
+.writing-state-color.submitted{
     background-color: #FFA24D;
 }
 .writing-state-color.not-approved{
