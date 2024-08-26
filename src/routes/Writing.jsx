@@ -41,10 +41,7 @@ function Writing() {
         className: '',
     };
 
-    const getSaveButtonText = () => {
-       if (state.state === 1) return '다시 제출';
-       return state.text === '' ? '제출' : state.text;
-    };
+    const isSaveButtonDisabled = state.state !== 0;
 
     return (
         <main className='writing-main'>
@@ -53,11 +50,11 @@ function Writing() {
             </section>
             <section className='writing-container'>
                 <article className='button-container'>
-                    <button className='save-button' onClick={handleSaveClick}>
-                        {(state.state === 2 || state.state === 3) && (
+                    <button className='save-button' onClick={handleSaveClick} disabled={isSaveButtonDisabled}>
+                        {(state.state !== 0 ) && (
                             <span className={`writing-state-color ${state.className || ''}`}></span>
                         )}
-                        {getSaveButtonText()}
+                        {state.text === '' ? '제출' : state.text}
                         {state.state === 3 && (
                             <div className='writing-score-wrapper'>
                                 <span className='my-writing-score'>{assignment.writingScore}</span>
