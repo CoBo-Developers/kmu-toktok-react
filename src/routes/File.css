@@ -1,0 +1,86 @@
+.file-main {
+    height: 100dvh;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.file-main-inner {
+    padding-left: 560px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.file-table {
+    border-collapse: collapse;
+    width: 80%;
+    border: none;
+    table-layout: fixed;
+}
+
+.file-table tr {
+    border: none;
+}
+
+.file-table tbody th,
+.file-table tbody td {
+    padding: 15px 0;
+    font-size: 14px;
+    color: #000;
+    font-weight: 400;
+    border: none;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.file-table thead th {
+    text-align: left;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #000;
+    font-weight: 400;
+    border-bottom: 1px solid #F0F1F3;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.file-table th:nth-child(1),
+.file-table td:nth-child(1) {
+  width: 10%;
+}
+
+.file-table th:nth-child(2),
+.file-table td:nth-child(2) {
+  width: 15%;
+}
+
+.file-table th:nth-child(3),
+.file-table td:nth-child(3) {
+  width: 40%;
+}
+
+.file-table th:nth-child(4),
+.file-table td:nth-child(4) {
+  width: 25%;
+}
+
+.file-table th:nth-child(5),
+.file-table td:nth-child(5) {
+  width: 10%;
+  text-align: center;
+}
+
+.download-btn {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.category {
+    padding: 6px 10px;
+    border-radius: 10px;
+}
