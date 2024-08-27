@@ -105,6 +105,17 @@
     border-radius: 10px;
     display: inline-block;
 }
+.writing-label-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.content-length {
+    font-size: 12px;
+    color: #444444;
+
+}
 .writing-content-container > div {
     width: 50%;
     display: flex;

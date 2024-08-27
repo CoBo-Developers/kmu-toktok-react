@@ -90,7 +90,10 @@ function Writing() {
                 <hr />
                 <article className='writing-content-container'>
                     <div>
-                        <div><span className='writing-label'>나의 글</span></div>
+                        <div className='writing-label-wrapper'>
+                            <span className='writing-label'>나의 글</span>
+                            <span className='content-length'>공백포함 글자수: {content.trim().length}자</span>
+                        </div>
                         <textarea
                             name='writing-content'
                             id='writing-content'
