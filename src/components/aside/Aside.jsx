@@ -74,6 +74,7 @@ function Aside() {
               <span>파일 목록 보기</span>
             </Link>
           </li>
+          {isMobile && currentPath === 'file' && <FileMenu />}
           <li className={'aside-menus-item ' + (currentPath === 'writing' ? 'active' : 'null')}>
             <Link to='/writing'>
               <img src={writingIcon} alt="writing-icon" />
