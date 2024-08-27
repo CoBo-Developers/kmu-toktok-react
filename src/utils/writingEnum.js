@@ -15,7 +15,7 @@ export const writingStateEnum = {
         state: 2
     },
     APPROVED: {
-        text: '제출승인',
+        text: '채점됨',
         className: 'approved',
         state: 3
     }
