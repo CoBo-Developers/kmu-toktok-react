@@ -105,10 +105,10 @@ function File() {
                                 <td className="info-column">
                                     <div className="category-col">
                                         <span className='category' style={{ backgroundColor: getCategoryColor(item.categoryId) }}>
-                                        {item.name}
+                                        {categoryList.find(cat => cat.id === item.categoryId)?.name}
                                         </span>
                                     </div>
-                                    <div className="title-col">{item.fileName}</div>
+                                    <div className="title-col">{item.name}</div>
                                     <div className="date-col">{fileFormattedDate(item.createdAt)}</div>
                                 </td>
                                 <td className="download-column">
