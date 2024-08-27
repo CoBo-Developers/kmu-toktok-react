@@ -28,4 +28,17 @@ const formatAssignmentTime = (fromDate, toDate) => {
     return `${from} - ${to}`;
 };
 
-export { formatDate, formatTime, formatAssignmentTime };
+const fileFormattedDate = (dateString) => {
+    const date = new Date(dateString);
+
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long',
+    };
+
+    return new Intl.DateTimeFormat('ko-KR', options).format(date);
+}
+
+export { formatDate, formatTime, formatAssignmentTime, fileFormattedDate };

@@ -13,6 +13,7 @@ import useLastCommentStore from '../../store/useLastCommenStore';
 import useShowExtend from '../../hooks/useShowExtend';
 import WritingMenu from './WritingMenu/WritingMenu';
 import useIsMobile from '../../hooks/useIsMobile';
+import FileMenu from './FileMenu/FileMenu';
 
 function Aside() {
   const [cookies] = useCookies(['studentId']);
@@ -90,6 +91,10 @@ function Aside() {
             {
               currentPath === 'writing' ? 
               <WritingMenu /> : null
+            }
+            {
+              currentPath === 'file' ? 
+              <FileMenu /> : null
             }
         </section>
       )}
