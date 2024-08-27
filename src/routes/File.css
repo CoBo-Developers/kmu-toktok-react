@@ -25,7 +25,7 @@
 
 .file-table tbody th,
 .file-table tbody td {
-  padding: 15px 0;
+  padding: 5px 0;
   font-size: 14px;
   color: #000;
   font-weight: 400;
@@ -124,6 +124,10 @@
   .file-table tbody tr {
     display: flex;
     align-items: center;
+  }
+  .file-table tbody th,
+  .file-table tbody td {
+    padding: 15px 0;
   }
 
   .order-column {
