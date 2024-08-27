@@ -22,7 +22,12 @@ const useChatProf = () => {
     getChat(cookies.accessToken)
       .then((chat) => {
         setChatList(chat.data);
-        setLastCommentIsQuestion(chat.data[chat.data.length - 1].question);
+        if (chat.data.length > 0){
+          setLastCommentIsQuestion(chat.data[chat.data.length - 1].question);
+        }
+        else{
+          setLastCommentIsQuestion(true);
+        }
       })
       .catch((error) => {
         console.error(error);
