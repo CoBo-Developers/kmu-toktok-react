@@ -88,24 +88,30 @@ function File() {
                     <thead>
                         <tr>
                             <th>순서</th>
-                            <th>카테고리</th>
-                            <th>제목</th>
-                            <th>게시일</th>
+                            <th className="info-column">
+                                <div className="category-col">카테고리</div>
+                                <div className="title-col">제목</div>
+                                <div className="date-col">게시일</div>
+                            </th>
                             <th>다운로드</th>
                         </tr>
                     </thead>
                     <tbody>
                         {fileData.map((item, index) => (
                             <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>
-                                    <span className='category' style={{ backgroundColor: getCategoryColor(item.categoryId) }}>
-                                        {item.name}
-                                    </span>
+                                <td className="order-column">
+                                    <span>{index + 1}</span>
                                 </td>
-                                <td>{item.fileName}</td>
-                                <td>{fileFormattedDate(item.createdAt)}</td>
-                                <td>
+                                <td className="info-column">
+                                    <div className="category-col">
+                                        <span className='category' style={{ backgroundColor: getCategoryColor(item.categoryId) }}>
+                                        {categoryList.find(cat => cat.id === item.categoryId)?.name}
+                                        </span>
+                                    </div>
+                                    <div className="title-col">{item.name}</div>
+                                    <div className="date-col">{fileFormattedDate(item.createdAt)}</div>
+                                </td>
+                                <td className="download-column">
                                     <img src={downloadIcon} className='download-btn' alt="" onClick={() => handleDownload(item.id, item.fileName)}/>
                                 </td>
                             </tr>

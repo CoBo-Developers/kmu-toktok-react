@@ -7,6 +7,15 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    height: 75dvh;
+    overflow-y: auto;
+}
+.writing-menu > ul::-webkit-scrollbar {
+    width: 6px;
+}
+.writing-menu > ul::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
 }
 .total-score-container {
     background-color: #152A41;
