@@ -261,13 +261,13 @@
     text-align: center;
 }
 .info-table th:nth-child(1){
-    width: 33%;
+    width: 50%;
 }
 .info-table th:nth-child(2){
-    width: 33%;
+    width: 25%;
 }
 .info-table th:nth-child(3){
-    width: 34%;
+    width: 25%;
 }
 .info-table td {
     padding: 5px 8px;
