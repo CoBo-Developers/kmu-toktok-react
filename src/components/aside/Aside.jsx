@@ -56,13 +56,13 @@ function Aside() {
         </section>
         <ul className='aside-menus'>
           <li className={'aside-menus-item ' + (currentPath === 'chatbot' ? 'active' : 'null')}>
-            <Link to='/chatbot'>
+            <Link to='/chatbot' onClick={()=>setMenuVisible(!isMenuVisible)}>
               <img src={chatIcon} alt="chat-icon" />
               <span>챗봇과 대화하기</span>
             </Link>
           </li>
           <li className={'aside-menus-item ' + (currentPath === 'chatprof' ? 'active' : 'null')}>
-            <Link to='/chatprof'>
+            <Link to='/chatprof' onClick={()=>setMenuVisible(!isMenuVisible)}>
               <img src={personIcon} alt="person-icon" />
               <span>교수님과 대화하기</span>
               {!lastCommentIsQuestion && <span className='aside-menus-item-alarm'></span>}

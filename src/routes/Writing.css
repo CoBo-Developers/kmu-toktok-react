@@ -152,8 +152,7 @@
 }
 
 #writing-content:focus{
-    outline: 1px solid #a7a8ab;
-    border-radius: 5px;
+    outline: none;
 }
 
 .writing-state-color {
