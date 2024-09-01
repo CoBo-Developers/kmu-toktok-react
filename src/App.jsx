@@ -10,10 +10,12 @@ import useReissue from './hooks/useReissue';
 import ChatProf from './routes/ChatProf';
 import Writing from './routes/Writing';
 import File from './routes/File';
+import useShowAlarm from './hooks/useShowAlarm';
 
 function App() {
   const showAside = useShowAside();
   useReissue();
+  useShowAlarm();
 
   return (
     <div className="page">
