@@ -1,0 +1,42 @@
+.writing-menu > h2 {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+}
+.writing-menu > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 75dvh;
+    overflow-y: auto;
+}
+.writing-menu > ul::-webkit-scrollbar {
+    width: 6px;
+}
+.writing-menu > ul::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+.total-score-container {
+    background-color: #152A41;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.total-score-wrapper {
+    color: #fff;
+}
+.total-score-title {
+    font-size: 12px;
+    color: #5E7D9F;
+    font-weight: 500;
+}
+.my-score {
+    font-size: 24px;
+    font-weight: 600;
+}
+.total-score {
+    font-size: 14px;
+    font-weight: 500;
+}
