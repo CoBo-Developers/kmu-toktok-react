@@ -27,6 +27,11 @@ function Chatbot() {
           </div>
           {
             chatList.map((item, i) => {
+              item.answer = item.answer
+                .replace(/""/g, '"')
+                .replace(/\\"/g, '"')
+                .replace(/\\n/g, '\n')
+                .replace(/【\d+:\d+†source】/g, '');
               return (
                 <div key={i}>
                   <div className='message-wrapper'>

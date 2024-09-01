@@ -10,7 +10,7 @@ function useReissue() {
   const currentPath = useCurrentPath();
 
   useEffect(() => {
-    if (!cookies.accessToken && cookies.refreshToken) {
+    if (cookies.refreshToken) {
       reissueApi(cookies.refreshToken)
         .then((response) => {
           setCookie("accessToken", response.data.accessToken, { path: '/',maxAge: 2 * 60 * 60 });
