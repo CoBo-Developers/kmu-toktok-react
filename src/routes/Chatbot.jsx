@@ -21,17 +21,29 @@ function Chatbot() {
         <article className="message-container-inner">
           <div className='message-wrapper'>
             <div className="message bot">
-              안녕하세요! 궁금한 것이 있으신가요?<br />
-              아래 입력창에 질문해주세요.
+            안녕하세요! 크무톡톡입니다. <br /><br />
+            크무톡톡은 우리 교과목을 위해 자체 개발한 AI챗봇이예요. AI챗봇은 질문내용(프롬프트)에 따라 더 정확한 답변을 받을 수 있어요.<br /><br />
+            1)교과목과 관련된 질문은 교과목 이름을 붙여야 챗봇이 더 잘 인식합니다! AI와 컴퓨팅사고 교과목에 대해 궁금한 점이 있다면 아래와 같이 질문해보세요!<br />
+            Ex)<br />
+            1. AI와 컴퓨팅사고 교과목의 평가기준을 알려줘.<br />
+            2. AI와 컴퓨팅사고 교과목의 교육목표를 알려줘.<br />
+            3. 2주차 글쓰기 주제가 궁금해<br /><br />
+
+            자, 이제 크무톡톡과 대화해볼까요?<br /><br />
+            질문을 입력해주세요!
             </div>
           </div>
           {
             chatList.map((item, i) => {
-              item.answer = item.answer
+              let formattedAnswer;
+              if (item.answer) {
+                formattedAnswer = item.answer
+                .slice(1, item.answer.length - 1)
                 .replace(/""/g, '"')
                 .replace(/\\"/g, '"')
                 .replace(/\\n/g, '\n')
                 .replace(/【\d+:\d+†source】/g, '');
+              }
               return (
                 <div key={i}>
                   <div className='message-wrapper'>
@@ -41,7 +53,7 @@ function Chatbot() {
                   </div>
                   <div className='message-wrapper'>
                     <div className="message bot">
-                      { item.answer || <Loading /> }
+                      { formattedAnswer || <Loading /> }
                     </div>
                   </div>
                 </div>
