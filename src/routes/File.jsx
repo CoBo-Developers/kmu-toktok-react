@@ -30,7 +30,7 @@ function File() {
             .catch((error) => {
                 alert(error.message);
             });
-    }, [cookies.accessToken, setCategoryList]);
+    }, [cookies.accessToken]);
 
     useEffect(() => {
         categoryIdList.forEach((categoryId) => {
