@@ -11,7 +11,7 @@
     overflow-y: auto;
 }
 .writing-menu > ul::-webkit-scrollbar {
-    width: 6px;
+    width: 2px;
 }
 .writing-menu > ul::-webkit-scrollbar-thumb {
     background: #888;
@@ -39,4 +39,11 @@
 .total-score {
     font-size: 14px;
     font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .writing-menu > ul {
+        height: 48dvh;
+    }
+    
 }
