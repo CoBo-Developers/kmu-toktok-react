@@ -40,12 +40,21 @@ const useWriting = (writingId) => {
     };
 
     const handleSaveClick = () => {
+        if(!content.trim()) {
+            alert('내용을 입력해주세요.');
+            return;
+        }
         setIsLoading(true);
         postWriting(cookies.accessToken, writingId, 1, content)
             .then(() => {
                 alert('과제가 제출되었습니다.');
                 setOriginalContent(content);
                 setIsContentModified(false);
+
+                setAssignment((prevAssignment) => ({
+                    ...prevAssignment,
+                    writingState: 1,
+                }));
             })
             .catch((error) => {
                 if (error.message === 'EXPIRED_ASSIGNMENT') {
