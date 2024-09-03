@@ -49,7 +49,11 @@ function File() {
                         categoryId
                     }));
     
-                    setAllFileData((prevData) => [...prevData, ...filesWithCategoryId]);
+                    setAllFileData((prevData) => {
+                        const existingIds = new Set(prevData.map(file => file.id));
+                        const newFiles = filesWithCategoryId.filter(file => !existingIds.has(file.id));
+                        return [...prevData, ...newFiles];
+                    });
                 })
                 .catch((error) => {
                     alert(error.message);
