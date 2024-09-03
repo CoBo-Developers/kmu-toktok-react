@@ -1,7 +1,8 @@
 import './Chatbot.css';
 import useChatbot from '../hooks/useChatbot';
-import MessageInput from '../components/MessageInput';
+import MessageInput from '../components/MessageInput/MessageInput';
 import Loading from '../components/Loading/Loading';
+import LoadingModal from '../components/LoadingModal/LoadingModal';
 
 function Chatbot() {
   const {
@@ -12,11 +13,13 @@ function Chatbot() {
     handleTextareaChange,
     handleTextareaKeyDown,
     handleTextareaKeyUp,
-    handleMessageSubmit
+    handleMessageSubmit,
+    isLoading
   } = useChatbot();
 
   return (
     <main className="chatbot">
+      <LoadingModal show={isLoading} />
       <section className="message-container">
         <article className="message-container-inner">
           <div className='message-wrapper'>

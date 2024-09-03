@@ -1,7 +1,8 @@
 import './ChatProf.css';
 import useChatProf from '../hooks/useChatProf';
 import { formatDate, formatTime } from '../utils/dateAndTime';
-import MessageInput from '../components/MessageInput';
+import MessageInput from '../components/MessageInput/MessageInput';
+import LoadingModal from '../components/LoadingModal/LoadingModal';
 
 function ChatProf() {
   const {
@@ -13,10 +14,12 @@ function ChatProf() {
     inputRef,
     chatListRef,
     sendRef,
+    isLoading,
   } = useChatProf();
 
   return (
     <main className="chat-container">
+      <LoadingModal show={isLoading} />
       <section className="chat-wrapper" ref={chatListRef}>
           {chatList.map((chat, index) => (
             <section key={index}>

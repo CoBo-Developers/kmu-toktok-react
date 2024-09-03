@@ -12,8 +12,10 @@ const useWriting = (writingId) => {
     const [isContentModified, setIsContentModified] = useState(false);
     const [isWaitingForFeedback, setIsWaitingForFeedback] = useState(false);
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         const assignment = writingList.find((item) => item.id === parseInt(writingId));
         if (!assignment) return;
         setAssignment(assignment);
@@ -26,6 +28,9 @@ const useWriting = (writingId) => {
             })
             .catch((error) => {
                 alert(error.message);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, [writingId, cookies.accessToken, writingList]);
 
@@ -35,6 +40,7 @@ const useWriting = (writingId) => {
     };
 
     const handleSaveClick = () => {
+        setIsLoading(true);
         postWriting(cookies.accessToken, writingId, 1, content)
             .then(() => {
                 alert('과제가 제출되었습니다.');
@@ -47,6 +53,9 @@ const useWriting = (writingId) => {
                 } else {
                     alert(error.message);
                 }
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 
@@ -71,7 +80,8 @@ const useWriting = (writingId) => {
         handleSaveClick,
         handleFeedbackClick,
         isContentModified,
-        isWaitingForFeedback
+        isWaitingForFeedback,
+        isLoading,
     };
 };
 

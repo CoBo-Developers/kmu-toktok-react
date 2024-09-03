@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import useWriting from '../hooks/useWriting';
 import { formatAssignmentTime } from '../utils/dateAndTime';
 import { writingStateEnum } from '../utils/writingEnum';
+import LoadingModal from '../components/LoadingModal/LoadingModal';
 
 function Writing() {
     const { writingId } = useParams();
@@ -16,6 +17,7 @@ function Writing() {
         handleFeedbackClick,
         isContentModified,
         isWaitingForFeedback,
+        isLoading,
     } = useWriting(writingId);
     const writingRef = useRef();
     const feedbackRef = useRef();
@@ -45,6 +47,7 @@ function Writing() {
 
     return (
         <main className='writing-main'>
+            <LoadingModal show={isLoading} />
             <section className='writing-header-container'>
                 <span className='chat-header-text'>{assignment.title}</span>
             </section>
