@@ -1,5 +1,5 @@
 const loginApi = async (code, option) => {
-    const res = await fetch(`${import.meta.env.VITE_APP_AUTH_API_URL}/api/auth/${option}-local-login?code=${decodeURIComponent(code)}`);
+    const res = await fetch(`${import.meta.env.VITE_APP_AUTH_API_URL}/api/auth/${option}-login?code=${decodeURIComponent(code)}`);
 
     if (!res.ok) {
         const message = (await res.json()).message;
