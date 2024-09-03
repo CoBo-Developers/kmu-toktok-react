@@ -13,6 +13,7 @@ const useWriting = (writingId) => {
     const [isWaitingForFeedback, setIsWaitingForFeedback] = useState(false);
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
     const [isLoading, setIsLoading] = useState(false);
+    const isSubmitted = !originalContent;
 
     useEffect(() => {
         setIsLoading(true);
@@ -35,8 +36,10 @@ const useWriting = (writingId) => {
     }, [writingId, cookies.accessToken, writingList]);
 
     const handleContentChange = (newContent) => {
-        setContent(newContent);
-        setIsContentModified(newContent !== originalContent);
+        if (!isSubmitted) {
+            setContent(newContent);
+            setIsContentModified(newContent !== originalContent);
+        }
     };
 
     const handleSaveClick = () => {
@@ -91,6 +94,7 @@ const useWriting = (writingId) => {
         isContentModified,
         isWaitingForFeedback,
         isLoading,
+        isSubmitted
     };
 };
 
