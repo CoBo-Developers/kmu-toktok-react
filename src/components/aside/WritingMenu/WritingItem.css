@@ -6,14 +6,19 @@
     font-size: 14px;
     color: #fff;
     font-weight: 400;
-    padding: 0 10px;
+    padding: 0 5px;
     border-radius: 10px;
     cursor: pointer;
+    gap: 5px;
 }
 .writing-week {
     font-size: 14px;
     color: #fff;
     font-weight: 400;
+    flex: 1;
+}
+.writing-state {
+    width: 65px;
 }
 .writing-item:hover {
     background-color: #465F7A;

@@ -1,4 +1,4 @@
-import sendIcon from '../assets/icons/send-icon.png';
+import sendIcon from '../../assets/icons/send-icon.png';
 import './MessageInput.css';
 
 // eslint-disable-next-line react/prop-types
