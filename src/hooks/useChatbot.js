@@ -10,6 +10,7 @@ function useChatbot() {
   const [inputMessage, setInputMessage] = useState("");
   const [cookies] = useCookies(['accessToken']);
   const [keys, setKeys] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleTextareaChange = (e) => {
     setInputMessage(e.target.value);
@@ -67,6 +68,7 @@ function useChatbot() {
 
   useEffect(() => {
     if (cookies.accessToken) {
+      setIsLoading(true);
       getChat(cookies.accessToken)
       .then((res) => {
         setChatList(res.data);
@@ -74,6 +76,9 @@ function useChatbot() {
       .catch((error) => {
         alert(error.message);
       })
+      .finally(() => {
+        setIsLoading(false);
+      });
     }
   }, [cookies])
   
@@ -89,7 +94,8 @@ function useChatbot() {
     handleTextareaChange,
     handleTextareaKeyDown,
     handleTextareaKeyUp,
-    handleMessageSubmit
+    handleMessageSubmit,
+    isLoading,
   }
 }
 

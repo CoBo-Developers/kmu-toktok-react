@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 import { getFileList, getCategoryList, fileDownload } from '../api/fileApi';
 import { fileFormattedDate } from '../utils/dateAndTime';
 import { useCategoryStore, useSelectedCategoryIdStore } from '../store/useFileStore';
+import LoadingModal from '../components/LoadingModal/LoadingModal';
 
 function File() {
     const [cookies] = useCookies(['accessToken']);
@@ -19,7 +20,10 @@ function File() {
         setCategoryList: state.setCategoryList
     }));
 
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
+        setIsLoading(true);
         getCategoryList(cookies.accessToken)
             .then((response) => {
                 setCategoryIdList(response.data.categories.map((category) => category.id));
@@ -29,11 +33,15 @@ function File() {
             })
             .catch((error) => {
                 alert(error.message);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, [cookies.accessToken]);
 
     useEffect(() => {
         categoryIdList.forEach((categoryId) => {
+            setIsLoading(true);
             getFileList(cookies.accessToken, categoryId)
                 .then((response) => {
                     const filesWithCategoryId = response.data.files.map(file => ({
@@ -45,6 +53,9 @@ function File() {
                 })
                 .catch((error) => {
                     alert(error.message);
+                })
+                .finally(() => {
+                    setIsLoading(false);
                 });
         });
     }, [cookies.accessToken, categoryIdList]);
@@ -65,6 +76,7 @@ function File() {
     };
 
     const handleDownload = (fileId, fileName) => {
+        setIsLoading(true);
         fileDownload(cookies.accessToken, fileId)
             .then((blob) => {
                 const url = URL.createObjectURL(blob);
@@ -78,11 +90,15 @@ function File() {
             })
             .catch((error) => {
                 alert(`Download failed: ${error.message}`);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
     
     return (
         <main className="file-main">
+            <LoadingModal show={isLoading} />
             <section className="file-main-inner">
                 <table className="file-table">
                     <thead>

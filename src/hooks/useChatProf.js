@@ -9,6 +9,7 @@ const useChatProf = () => {
   const inputRef = useRef();
   const chatListRef = useRef();
   const sendRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (chatListRef.current) {
@@ -17,12 +18,16 @@ const useChatProf = () => {
   }, [chatList]);
 
   useEffect(() => {
+    setIsLoading(true);
     getChat(cookies.accessToken)
       .then((chat) => {
         setChatList(chat.data);
       })
       .catch((error) => {
         console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [cookies.accessToken]);
 
@@ -37,6 +42,7 @@ const useChatProf = () => {
 
   const handleSend = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     if (newMessage.trim() === '') return;
 
@@ -57,6 +63,9 @@ const useChatProf = () => {
       })
       .catch((error) => {
         alert(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
     inputRef.current.value = '';
   };
@@ -84,6 +93,7 @@ const useChatProf = () => {
     inputRef,
     chatListRef,
     sendRef,
+    isLoading,
   };
 };
 
