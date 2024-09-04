@@ -36,10 +36,8 @@ const useWriting = (writingId) => {
     }, [writingId, cookies.accessToken, writingList]);
 
     const handleContentChange = (newContent) => {
-        if (!isSubmitted) {
-            setContent(newContent);
-            setIsContentModified(newContent !== originalContent);
-        }
+        setContent(newContent);
+        setIsContentModified(newContent !== originalContent);
     };
 
     const handleSaveClick = () => {
