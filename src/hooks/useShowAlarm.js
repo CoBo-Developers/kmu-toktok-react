@@ -8,18 +8,21 @@ const useShowAlarm = () => {
     const setLastCommentIsQuestion = useLastCommentStore((state) => state.setLastCommentIsQuestion);
 
     useEffect(() => {
-        getChat(cookies.accessToken)
-          .then((chat) => {
-            if (chat.data.length > 0){
-              setLastCommentIsQuestion(chat.data[chat.data.length - 1].question);
-            }
-            else{
-              setLastCommentIsQuestion(true);
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+      if (!cookies.accessToken) {
+        return ;
+      }
+      getChat(cookies.accessToken)
+        .then((chat) => {
+          if (chat.data.length > 0){
+            setLastCommentIsQuestion(chat.data[chat.data.length - 1].question);
+          }
+          else{
+            setLastCommentIsQuestion(true);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       }, [cookies]);
 }
 

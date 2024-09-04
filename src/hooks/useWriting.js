@@ -51,6 +51,7 @@ const useWriting = (writingId) => {
                 alert('과제가 제출되었습니다.');
                 setOriginalContent(content);
                 setIsContentModified(false);
+
                 setAssignment((prevAssignment) => ({
                     ...prevAssignment,
                     writingState: 1,
