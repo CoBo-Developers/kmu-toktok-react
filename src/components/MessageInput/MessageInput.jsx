@@ -2,7 +2,7 @@ import sendIcon from '../../assets/icons/send-icon.png';
 import './MessageInput.css';
 
 // eslint-disable-next-line react/prop-types
-function MessageInput({ textarea, handleTextareaChange, handleTextareaKeyDown, handleTextareaKeyUp, handleMessageSubmit, submitBtn }) {
+function MessageInput({ textarea, handleTextareaChange, handleTextareaKeyDown, handleTextareaKeyUp, handleMessageSubmit, submitBtn, isBotLoading }) {
   return (
     <section className="message-input-wrapper">
       <textarea
@@ -14,6 +14,7 @@ function MessageInput({ textarea, handleTextareaChange, handleTextareaKeyDown, h
         onChange={handleTextareaChange}
         onKeyUp={handleTextareaKeyUp}
         onKeyDown={handleTextareaKeyDown}
+        disabled={isBotLoading}
       ></textarea>
       <button className='send-btn' onClick={handleMessageSubmit} ref={submitBtn}>
         <img src={sendIcon} alt="send-icon" />

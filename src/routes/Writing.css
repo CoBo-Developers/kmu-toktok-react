@@ -154,6 +154,9 @@
 #writing-content:focus{
     outline: none;
 }
+#writing-content:disabled {
+    background-color: transparent; 
+}
 
 .writing-state-color {
     width: 10px;

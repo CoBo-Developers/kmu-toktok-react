@@ -101,7 +101,7 @@ function Writing() {
                             value={content}
                             onChange={(e) => handleContentChange(e.target.value)}
                             ref={writingRef}
-                            disabled={!isSubmitted}
+                            disabled={!isSubmitted || isWaitingForFeedback}
                         />
                     </div>
                     <hr />

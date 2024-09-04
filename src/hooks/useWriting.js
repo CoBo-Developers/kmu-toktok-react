@@ -92,7 +92,7 @@ const useWriting = (writingId) => {
         isContentModified,
         isWaitingForFeedback,
         isLoading,
-        isSubmitted
+        isSubmitted,
     };
 };
 
