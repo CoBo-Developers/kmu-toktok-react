@@ -18,6 +18,7 @@ function Writing() {
         isContentModified,
         isWaitingForFeedback,
         isLoading,
+        isSubmitted
     } = useWriting(writingId);
     const writingRef = useRef();
     const feedbackRef = useRef();
@@ -100,6 +101,7 @@ function Writing() {
                             value={content}
                             onChange={(e) => handleContentChange(e.target.value)}
                             ref={writingRef}
+                            disabled={!isSubmitted || isWaitingForFeedback}
                         />
                     </div>
                     <hr />
