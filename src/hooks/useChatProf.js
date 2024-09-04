@@ -42,7 +42,6 @@ const useChatProf = () => {
 
   const handleSend = (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     if (newMessage.trim() === '') return;
 
@@ -51,6 +50,7 @@ const useChatProf = () => {
       localDateTime: new Date().toISOString(),
       question: true,
     };
+    setIsLoading(true);
 
     postChat(cookies.accessToken, newMessage)
       .then(() => {
