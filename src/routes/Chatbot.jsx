@@ -16,6 +16,8 @@ function Chatbot() {
     handleMessageSubmit,
     isLoading
   } = useChatbot();
+  
+  let isBotLoading = false;
 
   return (
     <main className="chatbot">
@@ -47,6 +49,9 @@ function Chatbot() {
                 .replace(/\\n/g, '\n')
                 .replace(/【\d+:\d+†source】/g, '');
               }
+              if (!formattedAnswer) {
+                isBotLoading = true;
+              }
               return (
                 <div key={i}>
                   <div className='message-wrapper'>
@@ -73,6 +78,7 @@ function Chatbot() {
         handleTextareaKeyUp={handleTextareaKeyUp}
         handleMessageSubmit={handleMessageSubmit}
         submitBtn={submitBtn}
+        isBotLoading={isBotLoading}
       />
     </main>
   )
