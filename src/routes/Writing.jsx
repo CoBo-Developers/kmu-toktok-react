@@ -111,7 +111,7 @@ function Writing() {
                             name='feedback-content'
                             id='feedback-content'
                             value={feedback
-                                    .slice(1, item.answer.length - 1)
+                                    .slice(1, feedback.length - 1)
                                     .replace(/""/g, '"')
                                     .replace(/\\"/g, '"')
                                     .replace(/\\n/g, '\n')
