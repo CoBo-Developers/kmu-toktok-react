@@ -33,7 +33,7 @@ function Login() {
                             <img src={naverImg} alt='' />
                         </li>
                     </ul>
-                    <a id="mailBtn" href="#">문의하기</a>
+                    <a id="mailBtn" href="mailto:kmutoktok@gmail.com">문의하기</a>
                 </section>
             </section>
         </main>
