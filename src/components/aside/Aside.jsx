@@ -71,14 +71,14 @@ function Aside() {
           <li className={'aside-menus-item ' + (currentPath === 'file' ? 'active' : 'null')}>
             <Link to='/file'>
               <img src={fileIcon} alt="file-icon" />
-              <span>파일 목록 보기</span>
+              <span>학습안내</span>
             </Link>
           </li>
           {isMobile && currentPath === 'file' && <FileMenu />}
           <li className={'aside-menus-item ' + (currentPath === 'writing' ? 'active' : 'null')}>
             <Link to='/writing'>
               <img src={writingIcon} alt="writing-icon" />
-              <span>나의 글쓰기</span>
+              <span>나의 학습활동</span>
             </Link>
           </li>
           {isMobile && currentPath === 'writing' && <WritingMenu />}

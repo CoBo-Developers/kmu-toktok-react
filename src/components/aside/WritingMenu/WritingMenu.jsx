@@ -36,9 +36,9 @@ function WritingMenu() {
   return (
     <section className='writing-menu'>
         <LoadingModal show={isLoading} />
-        <h2>주차별 글쓰기</h2>
+        <h2>주차별 학습</h2>
         <article className='total-score-container'>
-            <h3 className='total-score-title'>현재 나의 글쓰기 점수</h3>
+            <h3 className='total-score-title'>현재 나의 학습활동 점수</h3>
             <div className='total-score-wrapper'><span className='my-score'>{myScore}</span> / <span className='total-score'>{totalScore}</span></div>
         </article>
         <ul>
