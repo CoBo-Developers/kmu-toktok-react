@@ -110,7 +110,12 @@ function Writing() {
                         <textarea
                             name='feedback-content'
                             id='feedback-content'
-                            value={feedback}
+                            value={feedback
+                                    .slice(1, item.answer.length - 1)
+                                    .replace(/""/g, '"')
+                                    .replace(/\\"/g, '"')
+                                    .replace(/\\n/g, '\n')
+                                    .replace(/【\d+:\d+†source】/g, '')}
                             readOnly
                             ref={feedbackRef}
                         />
