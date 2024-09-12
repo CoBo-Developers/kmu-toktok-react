@@ -18,6 +18,7 @@ function Writing() {
         isContentModified,
         isWaitingForFeedback,
         isLoading,
+        isSubmitted
     } = useWriting(writingId);
     const writingRef = useRef();
     const feedbackRef = useRef();
@@ -100,6 +101,7 @@ function Writing() {
                             value={content}
                             onChange={(e) => handleContentChange(e.target.value)}
                             ref={writingRef}
+                            disabled={!isSubmitted || isWaitingForFeedback}
                         />
                     </div>
                     <hr />
@@ -108,7 +110,12 @@ function Writing() {
                         <textarea
                             name='feedback-content'
                             id='feedback-content'
-                            value={feedback}
+                            value={feedback
+                                    .slice(1, feedback.length - 1)
+                                    .replace(/""/g, '"')
+                                    .replace(/\\"/g, '"')
+                                    .replace(/\\n/g, '\n')
+                                    .replace(/【\d+:\d+†source】/g, '')}
                             readOnly
                             ref={feedbackRef}
                         />

@@ -42,24 +42,28 @@ const useChatProf = () => {
 
   const handleSend = (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    inputRef.current.value = '';
+    inputRef.current.style.height = 'auto';
+    if (chatListRef.current) {
+      chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
+    }
 
     if (newMessage.trim() === '') return;
 
-    const newChat = {
-      comment: newMessage,
-      localDateTime: new Date().toISOString(),
-      question: true,
-    };
-
+    setIsLoading(true);
     postChat(cookies.accessToken, newMessage)
       .then(() => {
-        setChatList([...chatList, newChat]);
-        setNewMessage('');
-        inputRef.current.style.height = 'auto';
-        if (chatListRef.current) {
-            chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
-        }
+        setIsLoading(true);
+        getChat(cookies.accessToken)
+          .then((chat) => {
+            setChatList(chat.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
       })
       .catch((error) => {
         alert(error.message);
@@ -67,7 +71,7 @@ const useChatProf = () => {
       .finally(() => {
         setIsLoading(false);
       });
-    inputRef.current.value = '';
+    setNewMessage('');
   };
 
   const handleKeyUp = (e) => {
