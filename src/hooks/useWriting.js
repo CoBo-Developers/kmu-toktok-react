@@ -71,7 +71,8 @@ const useWriting = (writingId) => {
 
     const handleFeedbackClick = () => {
         setIsWaitingForFeedback(true);
-        getFeedback(cookies.accessToken, writingId, content)
+        const content2 = `${content.trim()}\nNumber of Characters: ${content.trim().length}`;
+        getFeedback(cookies.accessToken, writingId, content2)
             .then((res) => {
                 setFeedback(res.data.feedback);
                 setIsWaitingForFeedback(false);
