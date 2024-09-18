@@ -28,7 +28,10 @@ const useWriting = (writingId) => {
                 setContent(res.data.content);
                 setOriginalContent(res.data.content);
                 setFeedback('');
-                if ((parseDateString(assignment.startDate) < new Date()) || (parseDateString(assignment.endDate) > new Date())) {
+                const now = new Date();
+                if (parseDateString(assignment.startDate) < now && parseDateString(assignment.endDate) > now) {
+                    setIsExpired(false);
+                } else {
                     setIsExpired(true);
                 }
             })
