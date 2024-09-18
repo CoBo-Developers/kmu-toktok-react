@@ -46,6 +46,7 @@
     box-sizing: border-box;
     max-width: 60%;
     word-wrap: break-word;
+    word-break: keep-all;
 }
 
 .message-content.question {

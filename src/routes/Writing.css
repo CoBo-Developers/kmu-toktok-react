@@ -81,6 +81,7 @@
     padding: 8px;
     border-radius: 10px;
     margin-right: 10px;
+    word-break: keep-all;
 }
 .writing-content-container {
     display: flex;
@@ -130,6 +131,7 @@
     font-size: 14px;
     line-height: 20px;
     resize: none;
+    word-break: keep-all;
 }
 #feedback-content:focus {
     outline: none;
