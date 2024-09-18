@@ -41,4 +41,9 @@ const fileFormattedDate = (dateString) => {
     return new Intl.DateTimeFormat('ko-KR', options).format(date);
 }
 
-export { formatDate, formatTime, formatAssignmentTime, fileFormattedDate };
+const parseDateString = (dateString) => {
+    const [year, month, day] = dateString.split('-').map(Number);
+    return new Date(year, month - 1, day); 
+};
+
+export { formatDate, formatTime, formatAssignmentTime, fileFormattedDate, parseDateString };

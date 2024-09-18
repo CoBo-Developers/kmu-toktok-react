@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { postWriting, getWriting, getFeedback } from '../api/writingApi';
 import useWritingStore from '../store/useWritingStore';
+import { parseDateString } from '../utils/dateAndTime';
 
 const useWriting = (writingId) => {
     const [cookies] = useCookies(['accessToken']);
@@ -14,6 +15,7 @@ const useWriting = (writingId) => {
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
     const [isLoading, setIsLoading] = useState(false);
     const isSubmitted = !originalContent;
+    const [isExpired, setIsExpired] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
@@ -26,6 +28,9 @@ const useWriting = (writingId) => {
                 setContent(res.data.content);
                 setOriginalContent(res.data.content);
                 setFeedback('');
+                if ((parseDateString(assignment.startDate) < new Date()) || (parseDateString(assignment.endDate) > new Date())) {
+                    setIsExpired(true);
+                }
             })
             .catch((error) => {
                 alert(error.message);
@@ -94,6 +99,7 @@ const useWriting = (writingId) => {
         isWaitingForFeedback,
         isLoading,
         isSubmitted,
+        isExpired
     };
 };
 
