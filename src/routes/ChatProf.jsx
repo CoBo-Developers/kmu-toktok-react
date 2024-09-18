@@ -44,6 +44,8 @@ function ChatProf() {
         handleTextareaKeyUp={handleKeyUp}
         handleMessageSubmit={handleSend}
         submitBtn={sendRef}
+        inputBackground={{background: '#E6C5C84F'}}
+        sendIconBackground={{background: '#490208'}}
       />
     </main>
   );
