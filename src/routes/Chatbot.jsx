@@ -79,6 +79,8 @@ function Chatbot() {
         handleMessageSubmit={handleMessageSubmit}
         submitBtn={submitBtn}
         isBotLoading={isBotLoading}
+        inputBackground={{background: '#F0F1F3'}}
+        sendIconBackground={{background: '#001832'}}
       />
     </main>
   )

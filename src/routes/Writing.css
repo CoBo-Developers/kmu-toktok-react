@@ -81,6 +81,7 @@
     padding: 8px;
     border-radius: 10px;
     margin-right: 10px;
+    word-break: keep-all;
 }
 .writing-content-container {
     display: flex;
@@ -118,6 +119,7 @@
 }
 .writing-content-container > div {
     width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -125,11 +127,16 @@
 #feedback-content {
     border: none;
     width: 100%;
+    height: 100%;
     padding: 5px;
     margin-top: 10px;
     font-size: 14px;
     line-height: 20px;
     resize: none;
+    word-break: keep-all;
+}
+element.style {
+    height: auto;
 }
 #feedback-content:focus {
     outline: none;
