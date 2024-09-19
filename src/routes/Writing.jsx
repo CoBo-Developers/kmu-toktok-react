@@ -18,7 +18,8 @@ function Writing() {
         isContentModified,
         isWaitingForFeedback,
         isLoading,
-        isSubmitted
+        isSubmitted,
+        isExpired,
     } = useWriting(writingId);
     const writingRef = useRef();
     const feedbackRef = useRef();
@@ -70,7 +71,7 @@ function Writing() {
                     <button
                         className={!isContentModified ? 'feedback-button inactive' : 'feedback-button'}
                         onClick={handleFeedbackClick}
-                        disabled={!isContentModified}
+                        disabled={!isContentModified || state.state === 1}
                     >
                         피드백
                     </button>
@@ -101,7 +102,7 @@ function Writing() {
                             value={content}
                             onChange={(e) => handleContentChange(e.target.value)}
                             ref={writingRef}
-                            disabled={!isSubmitted || isWaitingForFeedback}
+                            disabled={!isSubmitted || isWaitingForFeedback || isExpired}
                         />
                     </div>
                     <hr />

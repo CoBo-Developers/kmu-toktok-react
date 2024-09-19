@@ -1,5 +1,4 @@
 .message-input-wrapper {
-    background: #F0F1F3;
     width: 50vw;
     max-width: 716px;
     border-radius: 42px;
@@ -29,6 +28,7 @@
   .send-btn {
     border: none;
     border-radius: 50%;
+    padding: 3px;
   }
   .send-btn img {
     width: 35px;

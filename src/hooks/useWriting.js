@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { postWriting, getWriting, getFeedback } from '../api/writingApi';
 import useWritingStore from '../store/useWritingStore';
+import { parseDateString } from '../utils/dateAndTime';
 
 const useWriting = (writingId) => {
     const [cookies] = useCookies(['accessToken']);
-    const [content, setContent] = useState('');
+    const [content, setContent] = useState(sessionStorage.getItem(`writing_${writingId}`) ?? '');
     const [originalContent, setOriginalContent] = useState('');
     const [assignment, setAssignment] = useState(null);
     const [feedback, setFeedback] = useState('');
@@ -14,6 +15,7 @@ const useWriting = (writingId) => {
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
     const [isLoading, setIsLoading] = useState(false);
     const isSubmitted = !originalContent;
+    const [isExpired, setIsExpired] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
@@ -23,9 +25,21 @@ const useWriting = (writingId) => {
 
         getWriting(cookies.accessToken, writingId)
             .then((res) => {
-                setContent(res.data.content);
+                const savedContent = sessionStorage.getItem(`writing_${writingId}`);
+                if (savedContent) {
+                    setContent(savedContent);
+                } else {
+                    setContent(res.data.content);
+                    sessionStorage.setItem(`writing_${writingId}`, res.data.content);
+                }
                 setOriginalContent(res.data.content);
                 setFeedback('');
+                const now = new Date();
+                if (parseDateString(assignment.startDate) <= now && parseDateString(assignment.endDate) >= now) {
+                    setIsExpired(false);
+                } else {
+                    setIsExpired(true);
+                }
             })
             .catch((error) => {
                 alert(error.message);
@@ -37,6 +51,7 @@ const useWriting = (writingId) => {
 
     const handleContentChange = (newContent) => {
         setContent(newContent);
+        sessionStorage.setItem(`writing_${writingId}`, newContent);
         setIsContentModified(newContent !== originalContent);
     };
 
@@ -51,6 +66,7 @@ const useWriting = (writingId) => {
                 alert('과제가 제출되었습니다.');
                 setOriginalContent(content);
                 setIsContentModified(false);
+                sessionStorage.removeItem(`writing_${writingId}`);
 
                 setAssignment((prevAssignment) => ({
                     ...prevAssignment,
@@ -94,6 +110,7 @@ const useWriting = (writingId) => {
         isWaitingForFeedback,
         isLoading,
         isSubmitted,
+        isExpired
     };
 };
 

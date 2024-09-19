@@ -46,10 +46,11 @@
     box-sizing: border-box;
     max-width: 60%;
     word-wrap: break-word;
+    word-break: keep-all;
 }
 
 .message-content.question {
-    background-color: #001832;
+    background-color: #490208;
     align-self: flex-end;
     margin-left: auto;
     color: #fff;
@@ -77,7 +78,7 @@
 }
 
 .message-content.answer {
-    background-color: #F0F1F3;
+    background-color: #F7EDEE;
     align-self: flex-start;
     margin-right: auto;
     width: auto;
