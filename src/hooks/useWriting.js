@@ -60,6 +60,10 @@ const useWriting = (writingId) => {
             alert('내용을 입력해주세요.');
             return;
         }
+        if (content.trim().length > 1500) {
+            alert('글자 수가 너무 많습니다.');
+            return;
+        }
         setIsLoading(true);
         postWriting(cookies.accessToken, writingId, 1, content)
             .then(() => {
