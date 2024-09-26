@@ -15,7 +15,6 @@ function Writing() {
         feedback,
         handleSaveClick,
         handleFeedbackClick,
-        isContentModified,
         isWaitingForFeedback,
         isLoading,
         isSubmitted,
@@ -68,13 +67,6 @@ function Writing() {
                             </div>
                         )}
                     </button>
-                    <button
-                        className={!isContentModified ? 'feedback-button inactive' : 'feedback-button'}
-                        onClick={handleFeedbackClick}
-                        disabled={!isContentModified || state.state === 1}
-                    >
-                        피드백
-                    </button>
                 </article>
                 <hr />
                 <article className='writing-description-container'>
@@ -107,13 +99,18 @@ function Writing() {
                     </div>
                     <hr />
                     <div>
-                        <div><span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span></div>
+                        <div>
+                            <span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span>
+                            <span className='feedback-guide'>피드백을 받고 싶다면 마우스를 올려보세요!</span>
+                        </div>
                         <textarea
                             name='feedback-content'
                             id='feedback-content'
                             value={feedback}
                             readOnly
                             ref={feedbackRef}
+                            onClick={handleFeedbackClick}
+                            disabled={isWaitingForFeedback}
                         />
                     </div>
                 </article>
