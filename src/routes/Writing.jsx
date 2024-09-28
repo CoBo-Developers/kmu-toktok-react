@@ -101,7 +101,7 @@ function Writing() {
                     <div>
                         <div>
                             <span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span>
-                            <span className='feedback-guide'>피드백을 받고 싶다면 마우스를 올려보세요!</span>
+                            <span className='feedback-guide'>{!isWaitingForFeedback ? '피드백을 받고 싶다면 마우스를 올려보세요!' : '피드백을 생성하는 중이에요!'}</span>
                         </div>
                         <textarea
                             name='feedback-content'
