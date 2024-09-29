@@ -101,16 +101,23 @@ function Writing() {
                     <div>
                         <div>
                             <span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span>
-                            <span className='feedback-guide'>{!isWaitingForFeedback ? '피드백을 받고 싶다면 마우스를 올려보세요!' : '피드백을 생성하는 중이에요!'}</span>
+                            <span className='feedback-guide'>
+                                {(!isSubmitted || isExpired) ? '' : (!isWaitingForFeedback ? '피드백을 받고 싶다면 마우스를 올려보세요!' : '피드백을 생성하는 중이에요!')}
+                            </span>
                         </div>
                         <textarea
                             name='feedback-content'
                             id='feedback-content'
-                            value={feedback}
+                            value={feedback
+                                .replace(/""/g, '')  
+                                .replace(/\\"/g, '') 
+                                .replace(/"/g, '')   
+                                .replace(/\\n/g, '\n')  
+                                .replace(/【\d+:\d+†source】/g, '')} 
                             readOnly
                             ref={feedbackRef}
                             onClick={handleFeedbackClick}
-                            disabled={isWaitingForFeedback}
+                            disabled={!isSubmitted || isWaitingForFeedback || isExpired}
                         />
                     </div>
                 </article>

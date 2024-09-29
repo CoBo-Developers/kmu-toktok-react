@@ -73,6 +73,8 @@ const useWriting = (writingId) => {
                     ...prevAssignment,
                     writingState: 1,
                 }));
+                setIsWaitingForFeedback(false);
+                setFeedback('');
             })
             .catch((error) => {
                 if (error.message === 'EXPIRED_ASSIGNMENT') {
@@ -87,6 +89,14 @@ const useWriting = (writingId) => {
     };
 
     const handleFeedbackClick = () => {
+        if(!content.trim()) {
+            alert('내용을 입력해주세요.');
+            return;
+        }
+        if (content.trim().length > 1500) {
+            alert('글자 수가 너무 많습니다.');
+            return;
+        }
         setFeedback('');
         setIsWaitingForFeedback(true);
         const content2 = `${content.trim()}\nNumber of Characters: ${content.trim().length}`;
