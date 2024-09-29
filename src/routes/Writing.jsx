@@ -109,11 +109,11 @@ function Writing() {
                             name='feedback-content'
                             id='feedback-content'
                             value={feedback
-                                .replace(/""/g, '')  
-                                .replace(/\\"/g, '') 
-                                .replace(/"/g, '')   
-                                .replace(/\\n/g, '\n')  
-                                .replace(/【\d+:\d+†source】/g, '')} 
+                                    .slice(1, feedback.length - 1)
+                                    .replace(/""/g, '"')
+                                    .replace(/\\"/g, '"')
+                                    .replace(/\\n/g, '\n')
+                                    .replace(/【\d+:\d+†source】/g, '')}
                             readOnly
                             ref={feedbackRef}
                             onClick={handleFeedbackClick}
