@@ -45,26 +45,9 @@
     align-items: center;
     justify-content: center;
 }
-.feedback-button{
-    background-color: #fff;
-    border: 1px solid #001832;
-    color: #001832;
-    width: 72px;
-    height: 36px;
-    border-radius: 10px;
+.feedback-guide {
     font-size: 14px;
-    cursor: pointer;
-    margin-left: 5px;
-}
-.feedback-button.inactive {
-    background-color: #fff;
-    border: 1px solid rgba(0, 24, 50, 0.14);
-    color: rgba(0, 24, 50, 0.14);
-    width: 72px;
-    height: 36px;
-    border-radius: 10px;
-    font-size: 14px;
-    cursor: pointer;
+    color: #444444;
     margin-left: 5px;
 }
 .writing-description-container {
@@ -140,6 +123,14 @@ element.style {
 }
 #feedback-content:focus {
     outline: none;
+}
+#feedback-content{
+    cursor: pointer;
+    flex: 1;
+}
+#feedback-content:disabled {
+    background-color: transparent; 
+    cursor: not-allowed;
 }
 
 @keyframes blink {

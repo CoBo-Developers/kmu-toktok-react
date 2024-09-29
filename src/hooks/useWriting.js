@@ -10,7 +10,6 @@ const useWriting = (writingId) => {
     const [originalContent, setOriginalContent] = useState('');
     const [assignment, setAssignment] = useState(null);
     const [feedback, setFeedback] = useState('');
-    const [isContentModified, setIsContentModified] = useState(false);
     const [isWaitingForFeedback, setIsWaitingForFeedback] = useState(false);
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
     const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +51,6 @@ const useWriting = (writingId) => {
     const handleContentChange = (newContent) => {
         setContent(newContent);
         sessionStorage.setItem(`writing_${writingId}`, newContent);
-        setIsContentModified(newContent !== originalContent);
     };
 
     const handleSaveClick = () => {
@@ -69,7 +67,6 @@ const useWriting = (writingId) => {
             .then(() => {
                 alert('과제가 제출되었습니다.');
                 setOriginalContent(content);
-                setIsContentModified(false);
                 sessionStorage.removeItem(`writing_${writingId}`);
 
                 setAssignment((prevAssignment) => ({
@@ -90,6 +87,7 @@ const useWriting = (writingId) => {
     };
 
     const handleFeedbackClick = () => {
+        setFeedback('');
         setIsWaitingForFeedback(true);
         const content2 = `${content.trim()}\nNumber of Characters: ${content.trim().length}`;
         getFeedback(cookies.accessToken, writingId, content2)
@@ -110,7 +108,6 @@ const useWriting = (writingId) => {
         feedback,
         handleSaveClick,
         handleFeedbackClick,
-        isContentModified,
         isWaitingForFeedback,
         isLoading,
         isSubmitted,
