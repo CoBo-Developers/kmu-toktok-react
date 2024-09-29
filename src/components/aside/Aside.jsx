@@ -61,20 +61,6 @@ function Aside() {
               <span>챗봇과 대화하기</span>
             </Link>
           </li>
-          <li className={'aside-menus-item ' + (currentPath === 'chatprof' ? 'active' : 'null')}>
-            <Link to='/chatprof' onClick={()=>setMenuVisible(!isMenuVisible)}>
-              <img src={personIcon} alt="person-icon" />
-              <span>교수님과 대화하기</span>
-              {!lastCommentIsQuestion && <span className='aside-menus-item-alarm'></span>}
-            </Link>
-          </li>
-          <li className={'aside-menus-item ' + (currentPath === 'file' ? 'active' : 'null')}>
-            <Link to='/file'>
-              <img src={fileIcon} alt="file-icon" />
-              <span>학습안내</span>
-            </Link>
-          </li>
-          {isMobile && currentPath === 'file' && <FileMenu />}
           <li className={'aside-menus-item ' + (currentPath === 'writing' ? 'active' : 'null')}>
             <Link to='/writing'>
               <img src={writingIcon} alt="writing-icon" />
@@ -82,6 +68,20 @@ function Aside() {
             </Link>
           </li>
           {isMobile && currentPath === 'writing' && <WritingMenu />}
+          <li className={'aside-menus-item ' + (currentPath === 'file' ? 'active' : 'null')}>
+            <Link to='/file'>
+              <img src={fileIcon} alt="file-icon" />
+              <span>학습안내</span>
+            </Link>
+          </li>
+          {isMobile && currentPath === 'file' && <FileMenu />}
+          <li className={'aside-menus-item ' + (currentPath === 'chatprof' ? 'active' : 'null')}>
+            <Link to='/chatprof' onClick={()=>setMenuVisible(!isMenuVisible)}>
+              <img src={personIcon} alt="person-icon" />
+              <span>교수님과 대화하기</span>
+              {!lastCommentIsQuestion && <span className='aside-menus-item-alarm'></span>}
+            </Link>
+          </li>
         </ul>
       </section>
       {!isMobile && (
