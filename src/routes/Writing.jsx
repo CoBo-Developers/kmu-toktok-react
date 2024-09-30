@@ -102,7 +102,10 @@ function Writing() {
                     <hr />
                     <div  
                         className='feedback-container'
-                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseEnter={() => {
+                            if (!isExpired && isSubmitted && !isWaitingForFeedback)
+                                setIsHovered(true)
+                        }}
                         onMouseLeave={() => setIsHovered(false)}
                     >
                         <div>
