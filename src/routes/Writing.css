@@ -101,7 +101,7 @@
 
 }
 .writing-content-container > div {
-    width: 50%;
+    flex: 1;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -137,6 +137,8 @@ element.style {
     position: relative;
     width: 100%;
     height: 100%;
+    border-left: 1px solid #E6E8EB;
+    padding-left: 20px;
 }
 .hover-div {
     background-color: #00183266;

@@ -99,45 +99,46 @@ function Writing() {
                             disabled={!isSubmitted || isWaitingForFeedback || isExpired}
                         />
                     </div>
-                    <hr />
-                    <div  
-                        className='feedback-container'
-                        onMouseEnter={() => {
-                            if (!isExpired && isSubmitted && !isWaitingForFeedback)
-                                setIsHovered(true)
-                        }}
-                        onMouseLeave={() => setIsHovered(false)}
-                    >
-                        <div>
-                            <span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span>
-                            <span className='feedback-guide'>
-                                {(isHovered || !isSubmitted || isExpired) ? '' : (!isWaitingForFeedback ? '피드백을 받고 싶다면 마우스를 올려보세요!' : '피드백을 생성하는 중이에요!')}
-                            </span>
+                    {!isSubmitted || !isExpired && (
+                        <div  
+                            className='feedback-container'
+                            onMouseEnter={() => {
+                                if (!isWaitingForFeedback)
+                                    setIsHovered(true)
+                            }}
+                            onMouseLeave={() => setIsHovered(false)}
+                        >
+                            <div>
+                                <span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span>
+                                <span className='feedback-guide'>
+                                    {isHovered ? '' : (!isWaitingForFeedback ? '피드백을 받고 싶다면 마우스를 올려보세요!' : '피드백을 생성하는 중이에요!')}
+                                </span>
+                            </div>
+                            <textarea
+                                name='feedback-content'
+                                id='feedback-content'
+                                value={isHovered ? '' : 
+                                        feedback
+                                        .slice(1, feedback.length - 1)
+                                        .replace(/""/g, '"')
+                                        .replace(/\\"/g, '"')
+                                        .replace(/\\n/g, '\n')
+                                        .replace(/【\d+:\d+†source】/g, '')}
+                                readOnly
+                                ref={feedbackRef}
+                                disabled={isWaitingForFeedback}
+                            />
+                            {isHovered && (
+                                <article className='hover-div' onClick={handleFeedbackClick}>
+                                    <div>
+                                        <p>피드백 칸의 면적을 클릭하면</p>
+                                        <img src={feedbackArrow} alt='feedback-arrow' />
+                                    </div>
+                                    <p>나의 글에 대한 피드백이 생성돼요!</p>
+                                </article>
+                            )}
                         </div>
-                        <textarea
-                            name='feedback-content'
-                            id='feedback-content'
-                            value={feedback
-                                    .slice(1, feedback.length - 1)
-                                    .replace(/""/g, '"')
-                                    .replace(/\\"/g, '"')
-                                    .replace(/\\n/g, '\n')
-                                    .replace(/【\d+:\d+†source】/g, '')}
-                            readOnly
-                            ref={feedbackRef}
-                            onClick={handleFeedbackClick}
-                            disabled={!isSubmitted || isWaitingForFeedback || isExpired}
-                        />
-                        {isHovered && (
-                            <article className='hover-div'>
-                                <div>
-                                    <p>피드백 칸의 면적을 클릭하면</p>
-                                    <img src={feedbackArrow} alt='feedback-arrow' />
-                                </div>
-                                <p>나의 글에 대한 피드백이 생성돼요!</p>
-                            </article>
-                        )}
-                    </div>
+                    )}
                 </article>
             </section>
         </main>
