@@ -18,7 +18,6 @@ function Writing() {
         handleFeedbackClick,
         isWaitingForFeedback,
         isLoading,
-        isSubmitted,
         isExpired,
     } = useWriting(writingId);
     const writingRef = useRef();
@@ -45,8 +44,9 @@ function Writing() {
         text: '',
         className: '',
     };
+    console.log(state);
 
-    const isSaveButtonDisabled = state.state !== 0;
+    const isSaveButtonDisabled = state.state !== 0 || isWaitingForFeedback || isExpired;
 
     return (
         <main className='writing-main'>
@@ -96,10 +96,10 @@ function Writing() {
                             value={content}
                             onChange={(e) => handleContentChange(e.target.value)}
                             ref={writingRef}
-                            disabled={!isSubmitted || isWaitingForFeedback || isExpired}
+                            disabled={state.state != 0 || isWaitingForFeedback || isExpired}
                         />
                     </div>
-                    {!isSubmitted || !isExpired && (
+                    {state.state != 0 || !isExpired && (
                         <div  
                             className='feedback-container'
                             onMouseEnter={() => {

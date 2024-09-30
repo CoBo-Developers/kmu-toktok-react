@@ -19,7 +19,8 @@ function WritingMenu() {
     getWritingList(cookies.accessToken)
       .then((res) => {
         const assignmentList = res.data.assignmentList;
-        const myScore = assignmentList.reduce((sum, item) => sum + (item.writingScore || 0), 0);
+
+        const myScore = assignmentList.reduce((sum, item) => sum + (item.writingState === 3 ? item.writingScore : 0), 0);
         const totalScore = assignmentList.reduce((sum, item) => sum + item.score, 0);
 
         setWritingList(assignmentList);

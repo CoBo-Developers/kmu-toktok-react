@@ -7,13 +7,11 @@ import { parseDateString } from '../utils/dateAndTime';
 const useWriting = (writingId) => {
     const [cookies] = useCookies(['accessToken']);
     const [content, setContent] = useState(sessionStorage.getItem(`writing_${writingId}`) ?? '');
-    const [originalContent, setOriginalContent] = useState('');
     const [assignment, setAssignment] = useState(null);
     const [feedback, setFeedback] = useState('');
     const [isWaitingForFeedback, setIsWaitingForFeedback] = useState(false);
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
     const [isLoading, setIsLoading] = useState(false);
-    const isSubmitted = !originalContent;
     const [isExpired, setIsExpired] = useState(false);
 
     useEffect(() => {
@@ -31,7 +29,6 @@ const useWriting = (writingId) => {
                     setContent(res.data.content);
                     sessionStorage.setItem(`writing_${writingId}`, res.data.content);
                 }
-                setOriginalContent(res.data.content);
                 setFeedback('');
                 const now = new Date();
                 if (parseDateString(assignment.startDate) <= now && parseDateString(assignment.endDate) >= now) {
@@ -66,7 +63,6 @@ const useWriting = (writingId) => {
         postWriting(cookies.accessToken, writingId, 1, content)
             .then(() => {
                 alert('과제가 제출되었습니다.');
-                setOriginalContent(content);
                 sessionStorage.removeItem(`writing_${writingId}`);
 
                 setAssignment((prevAssignment) => ({
@@ -120,7 +116,6 @@ const useWriting = (writingId) => {
         handleFeedbackClick,
         isWaitingForFeedback,
         isLoading,
-        isSubmitted,
         isExpired
     };
 };
