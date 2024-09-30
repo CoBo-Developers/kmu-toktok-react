@@ -44,7 +44,6 @@ function Writing() {
         text: '',
         className: '',
     };
-    console.log(state);
 
     const isSaveButtonDisabled = state.state !== 0 || isWaitingForFeedback || isExpired;
 
