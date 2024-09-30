@@ -1,10 +1,11 @@
 import './Writing.css';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useWriting from '../hooks/useWriting';
 import { formatAssignmentTime } from '../utils/dateAndTime';
 import { writingStateEnum } from '../utils/writingEnum';
 import LoadingModal from '../components/LoadingModal/LoadingModal';
+import feedbackArrow from '../assets/icons/feedback-arrow.png';
 
 function Writing() {
     const { writingId } = useParams();
@@ -22,6 +23,7 @@ function Writing() {
     } = useWriting(writingId);
     const writingRef = useRef();
     const feedbackRef = useRef();
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         if (writingRef?.current) {
@@ -98,11 +100,15 @@ function Writing() {
                         />
                     </div>
                     <hr />
-                    <div>
+                    <div  
+                        className='feedback-container'
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                    >
                         <div>
                             <span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span>
                             <span className='feedback-guide'>
-                                {(!isSubmitted || isExpired) ? '' : (!isWaitingForFeedback ? '피드백을 받고 싶다면 마우스를 올려보세요!' : '피드백을 생성하는 중이에요!')}
+                                {(isHovered || !isSubmitted || isExpired) ? '' : (!isWaitingForFeedback ? '피드백을 받고 싶다면 마우스를 올려보세요!' : '피드백을 생성하는 중이에요!')}
                             </span>
                         </div>
                         <textarea
@@ -119,6 +125,15 @@ function Writing() {
                             onClick={handleFeedbackClick}
                             disabled={!isSubmitted || isWaitingForFeedback || isExpired}
                         />
+                        {isHovered && (
+                            <article className='hover-div'>
+                                <div>
+                                    <p>피드백 칸의 면적을 클릭하면</p>
+                                    <img src={feedbackArrow} alt='feedback-arrow' />
+                                </div>
+                                <p>나의 글에 대한 피드백이 생성돼요!</p>
+                            </article>
+                        )}
                     </div>
                 </article>
             </section>
