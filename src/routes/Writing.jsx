@@ -116,8 +116,7 @@ function Writing() {
                             <textarea
                                 name='feedback-content'
                                 id='feedback-content'
-                                value={isHovered ? '' : 
-                                        feedback
+                                value={feedback
                                         .slice(1, feedback.length - 1)
                                         .replace(/""/g, '"')
                                         .replace(/\\"/g, '"')
