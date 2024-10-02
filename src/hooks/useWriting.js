@@ -7,13 +7,11 @@ import { parseDateString } from '../utils/dateAndTime';
 const useWriting = (writingId) => {
     const [cookies] = useCookies(['accessToken']);
     const [content, setContent] = useState(sessionStorage.getItem(`writing_${writingId}`) ?? '');
-    const [originalContent, setOriginalContent] = useState('');
     const [assignment, setAssignment] = useState(null);
     const [feedback, setFeedback] = useState('');
     const [isWaitingForFeedback, setIsWaitingForFeedback] = useState(false);
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
     const [isLoading, setIsLoading] = useState(false);
-    const isSubmitted = !originalContent;
     const [isExpired, setIsExpired] = useState(false);
 
     useEffect(() => {
@@ -31,7 +29,6 @@ const useWriting = (writingId) => {
                     setContent(res.data.content);
                     sessionStorage.setItem(`writing_${writingId}`, res.data.content);
                 }
-                setOriginalContent(res.data.content);
                 setFeedback('');
                 const now = new Date();
                 if (parseDateString(assignment.startDate) <= now && parseDateString(assignment.endDate) >= now) {
@@ -59,20 +56,21 @@ const useWriting = (writingId) => {
             return;
         }
         if (content.trim().length > 1500) {
-            alert('글자 수가 너무 많습니다.');
+            alert('글자수가 너무 많습니다. 1500자 이하로 작성해주세요.');
             return;
         }
         setIsLoading(true);
         postWriting(cookies.accessToken, writingId, 1, content)
             .then(() => {
                 alert('과제가 제출되었습니다.');
-                setOriginalContent(content);
                 sessionStorage.removeItem(`writing_${writingId}`);
 
                 setAssignment((prevAssignment) => ({
                     ...prevAssignment,
                     writingState: 1,
                 }));
+                setIsWaitingForFeedback(false);
+                setFeedback('');
             })
             .catch((error) => {
                 if (error.message === 'EXPIRED_ASSIGNMENT') {
@@ -87,6 +85,14 @@ const useWriting = (writingId) => {
     };
 
     const handleFeedbackClick = () => {
+        if(!content.trim()) {
+            alert('내용을 입력해주세요.');
+            return;
+        }
+        if (content.trim().length > 1500) {
+            alert('글자수가 너무 많습니다. 1500자 이하로 작성해주세요.');
+            return;
+        }
         setFeedback('');
         setIsWaitingForFeedback(true);
         const content2 = `${content.trim()}\nNumber of Characters: ${content.trim().length}`;
@@ -110,7 +116,6 @@ const useWriting = (writingId) => {
         handleFeedbackClick,
         isWaitingForFeedback,
         isLoading,
-        isSubmitted,
         isExpired
     };
 };
