@@ -56,7 +56,7 @@ const useWriting = (writingId) => {
             return;
         }
         if (content.trim().length > 1500) {
-            alert('글자 수가 너무 많습니다.');
+            alert('글자수가 너무 많습니다. 1500자 이하로 작성해주세요.');
             return;
         }
         setIsLoading(true);
@@ -90,7 +90,7 @@ const useWriting = (writingId) => {
             return;
         }
         if (content.trim().length > 1500) {
-            alert('글자 수가 너무 많습니다.');
+            alert('글자수가 너무 많습니다. 1500자 이하로 작성해주세요.');
             return;
         }
         setFeedback('');
