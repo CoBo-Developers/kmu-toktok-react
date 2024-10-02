@@ -166,10 +166,6 @@ element.style {
     justify-content: space-between;
     width: 215px;
 }
-.hover-div img {
-    width: 16px;
-    height: 16px;
-}
 
 @keyframes blink {
     0% {

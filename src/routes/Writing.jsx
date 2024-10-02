@@ -5,7 +5,7 @@ import useWriting from '../hooks/useWriting';
 import { formatAssignmentTime } from '../utils/dateAndTime';
 import { writingStateEnum } from '../utils/writingEnum';
 import LoadingModal from '../components/LoadingModal/LoadingModal';
-import feedbackArrow from '../assets/icons/feedback-arrow.png';
+import feedbackArrow from '../assets/icons/feedback-arrow.svg';
 
 function Writing() {
     const { writingId } = useParams();
