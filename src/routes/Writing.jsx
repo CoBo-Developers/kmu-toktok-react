@@ -1,10 +1,11 @@
 import './Writing.css';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useWriting from '../hooks/useWriting';
 import { formatAssignmentTime } from '../utils/dateAndTime';
 import { writingStateEnum } from '../utils/writingEnum';
 import LoadingModal from '../components/LoadingModal/LoadingModal';
+import feedbackArrow from '../assets/icons/feedback-arrow.svg';
 
 function Writing() {
     const { writingId } = useParams();
@@ -17,11 +18,11 @@ function Writing() {
         handleFeedbackClick,
         isWaitingForFeedback,
         isLoading,
-        isSubmitted,
         isExpired,
     } = useWriting(writingId);
     const writingRef = useRef();
     const feedbackRef = useRef();
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         if (writingRef?.current) {
@@ -44,7 +45,7 @@ function Writing() {
         className: '',
     };
 
-    const isSaveButtonDisabled = state.state !== 0;
+    const isSaveButtonDisabled = state.state !== 0 || isWaitingForFeedback || isExpired;
 
     return (
         <main className='writing-main'>
@@ -94,30 +95,48 @@ function Writing() {
                             value={content}
                             onChange={(e) => handleContentChange(e.target.value)}
                             ref={writingRef}
-                            disabled={!isSubmitted || isWaitingForFeedback || isExpired}
+                            disabled={state.state != 0 || isWaitingForFeedback || isExpired}
                         />
                     </div>
-                    <hr />
-                    <div>
-                        <div>
-                            <span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span>
-                            <span className='feedback-guide'>{!isWaitingForFeedback ? '피드백을 받고 싶다면 마우스를 올려보세요!' : '피드백을 생성하는 중이에요!'}</span>
+                    {state.state != 0 || !isExpired && (
+                        <div  
+                            className='feedback-container'
+                            onMouseEnter={() => {
+                                if (!isWaitingForFeedback)
+                                    setIsHovered(true)
+                            }}
+                            onMouseLeave={() => setIsHovered(false)}
+                        >
+                            <div>
+                                <span className={`feedback-label ${isWaitingForFeedback ? 'blink-effect' : ''}`}>피드백</span>
+                                <span className='feedback-guide'>
+                                    {isHovered ? '' : (!isWaitingForFeedback ? '피드백을 받고 싶다면 마우스를 올려보세요!' : '피드백을 생성하는 중이에요!')}
+                                </span>
+                            </div>
+                            <textarea
+                                name='feedback-content'
+                                id='feedback-content'
+                                value={feedback
+                                        .slice(1, feedback.length - 1)
+                                        .replace(/""/g, '"')
+                                        .replace(/\\"/g, '"')
+                                        .replace(/\\n/g, '\n')
+                                        .replace(/【\d+:\d+†source】/g, '')}
+                                readOnly
+                                ref={feedbackRef}
+                                disabled={isWaitingForFeedback}
+                            />
+                            {isHovered && (
+                                <article className='hover-div' onClick={handleFeedbackClick}>
+                                    <div>
+                                        <p>피드백 칸의 면적을 클릭하면</p>
+                                        <img src={feedbackArrow} alt='feedback-arrow' />
+                                    </div>
+                                    <p>나의 글에 대한 피드백이 생성돼요!</p>
+                                </article>
+                            )}
                         </div>
-                        <textarea
-                            name='feedback-content'
-                            id='feedback-content'
-                            value={feedback
-                                    .slice(1, feedback.length - 1)
-                                    .replace(/""/g, '"')
-                                    .replace(/\\"/g, '"')
-                                    .replace(/\\n/g, '\n')
-                                    .replace(/【\d+:\d+†source】/g, '')}
-                            readOnly
-                            ref={feedbackRef}
-                            onClick={handleFeedbackClick}
-                            disabled={isWaitingForFeedback}
-                        />
-                    </div>
+                    )}
                 </article>
             </section>
         </main>
