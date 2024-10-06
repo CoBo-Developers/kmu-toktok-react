@@ -31,9 +31,13 @@ const useWriting = (writingId) => {
                 }
                 setFeedback('');
                 const now = new Date();
-                if (parseDateString(assignment.startDate) <= now && parseDateString(assignment.endDate) >= now) {
+                if (
+                    parseDateString(assignment.startDate) <= now && 
+                    parseDateString(assignment.endDate).setDate(parseDateString(assignment.endDate).getDate() + 1) >= now
+                ) {
                     setIsExpired(false);
                 } else {
+                    
                     setIsExpired(true);
                 }
             })
