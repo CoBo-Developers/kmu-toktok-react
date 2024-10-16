@@ -29,7 +29,7 @@ function Writing() {
             writingRef.current.style.height = 'auto';
             writingRef.current.style.height = `${writingRef.current.scrollHeight}px`;
         }
-    }, [content]);
+    }, [content,assignment]);
 
     useEffect(() => {
         if (feedbackRef?.current) {
@@ -38,14 +38,15 @@ function Writing() {
         }
     }, [feedback]);
 
-    if (!assignment) return <div>Loading...</div>;
+    if (!writingId || !assignment) return null;
 
     const state = Object.values(writingStateEnum).find(state => state.state === assignment.writingState) || {
         text: '',
         className: '',
     };
 
-    const isSaveButtonDisabled = state.state !== 0 || isWaitingForFeedback || isExpired;
+    const isSaveButtonDisabled = state.state !== 0 || isWaitingForFeedback || isExpired || content.trim().length < 250;
+    const saveButtonClassName = `save-button ${state.state != 4 && content.trim().length < 250 ? 'short-content' : ''}`;
 
     return (
         <main className='writing-main'>
@@ -55,7 +56,7 @@ function Writing() {
             </section>
             <section className='writing-container'>
                 <article className='button-container'>
-                    <button className='save-button' onClick={handleSaveClick} disabled={isSaveButtonDisabled}>
+                    <button className={saveButtonClassName} onClick={handleSaveClick} disabled={isSaveButtonDisabled}>
                         {(state.state !== 0 ) && (
                             <span className={`writing-state-color ${state.className || ''}`}></span>
                         )}

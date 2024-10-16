@@ -42,6 +42,10 @@ function useChatbot() {
     textarea.current.style.height = 'auto';
     textarea.current.style.height = textarea.current.scrollHeight + 'px';
     if (inputMessage.trim().length > 0) {
+      if(inputMessage.trim().length > 5000) {
+        alert("5000자 이하로 입력해주세요.");
+        return;
+      }
       let chatListCopy = [...chatList];
       chatListCopy.push({
         createdAt: new Date(),
