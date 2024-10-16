@@ -46,3 +46,6 @@
 .writing-state-color.not-submitted{
     background-color: transparent;
 }
+.writing-state-color.expired{
+    background-color: #FF4D4D;
+}
