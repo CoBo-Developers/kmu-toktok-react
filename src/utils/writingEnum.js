@@ -18,5 +18,10 @@ export const writingStateEnum = {
         text: '채점됨',
         className: 'approved',
         state: 3
-    }
+    },
+    EXPIRED: {
+        text: '미제출',
+        className: 'expired',
+        state: 4
+    },
 };

@@ -46,7 +46,7 @@ function Writing() {
     };
 
     const isSaveButtonDisabled = state.state !== 0 || isWaitingForFeedback || isExpired || content.trim().length < 250;
-    const saveButtonClassName = `save-button ${content.trim().length < 250 ? 'short-content' : ''}`;
+    const saveButtonClassName = `save-button ${state.state != 4 && content.trim().length < 250 ? 'short-content' : ''}`;
 
     return (
         <main className='writing-main'>
