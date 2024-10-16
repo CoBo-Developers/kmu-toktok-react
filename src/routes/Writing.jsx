@@ -29,7 +29,7 @@ function Writing() {
             writingRef.current.style.height = 'auto';
             writingRef.current.style.height = `${writingRef.current.scrollHeight}px`;
         }
-    }, [content]);
+    }, [content,assignment]);
 
     useEffect(() => {
         if (feedbackRef?.current) {
