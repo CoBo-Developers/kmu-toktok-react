@@ -5,7 +5,7 @@ import Login from './routes/Login';
 import Redirect from './routes/Redirect';
 import useShowAside from './hooks/useShowAside';
 import Register from './routes/Register';
-import Chatbot from './routes/Chatbot';
+import Chatbot from './routes/Chatbot/Chatbot';
 import useReissue from './hooks/useReissue';
 import ChatProf from './routes/ChatProf';
 import Writing from './routes/Writing';
