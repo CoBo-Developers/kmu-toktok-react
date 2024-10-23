@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import useUserStore from '../store/useUserStore';
-import { registerApi } from '../api/registerApi';
+import useUserStore from '../../../store/useUserStore';
+import { registerApi } from '../../../api/registerApi';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
