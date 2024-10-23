@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useCookies } from 'react-cookie';
-import { postWriting, getWriting, getFeedback } from '../api/writingApi';
-import useWritingStore from '../store/useWritingStore';
-import { parseDateString } from '../utils/dateAndTime';
+import { postWriting, getWriting, getFeedback } from '../../../api/writingApi';
+import useWritingStore from '../../../store/useWritingStore';
+import { parseDateString } from '../../../utils/dateAndTime';
+import { handleTextareaChange } from '../../../utils/textareaHandler';
 
 const useWriting = (writingId) => {
     const [cookies] = useCookies(['accessToken']);
@@ -13,6 +14,16 @@ const useWriting = (writingId) => {
     const [writingList] = useWritingStore((state) => [state.writingList, state.setWritingList]);
     const [isLoading, setIsLoading] = useState(false);
     const [isExpired, setIsExpired] = useState(false);
+    const writingRef = useRef();
+    const feedbackRef = useRef();
+
+    useEffect(() => {
+        handleTextareaChange(writingRef);
+    }, [content, assignment]);
+    
+    useEffect(() => {
+        handleTextareaChange(feedbackRef);
+    }, [feedback]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -141,7 +152,9 @@ const useWriting = (writingId) => {
         handleFeedbackClick,
         isWaitingForFeedback,
         isLoading,
-        isExpired
+        isExpired,
+        writingRef,
+        feedbackRef,
     };
 };
 

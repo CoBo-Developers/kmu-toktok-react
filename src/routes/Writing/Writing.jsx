@@ -1,11 +1,11 @@
 import './Writing.css';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useWriting from '../hooks/useWriting';
-import { formatAssignmentTime } from '../utils/dateAndTime';
-import { writingStateEnum } from '../utils/writingEnum';
-import LoadingModal from '../components/LoadingModal/LoadingModal';
-import feedbackArrow from '../assets/icons/feedback-arrow.svg';
+import useWriting from './hooks/useWriting';
+import { formatAssignmentTime } from '../../utils/dateAndTime';
+import { writingStateEnum } from '../../utils/writingEnum';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
+import feedbackArrow from '../../assets/icons/feedback-arrow.svg';
 
 function Writing() {
     const { writingId } = useParams();
@@ -19,24 +19,10 @@ function Writing() {
         isWaitingForFeedback,
         isLoading,
         isExpired,
+        writingRef,
+        feedbackRef,
     } = useWriting(writingId);
-    const writingRef = useRef();
-    const feedbackRef = useRef();
     const [isHovered, setIsHovered] = useState(false);
-
-    useEffect(() => {
-        if (writingRef?.current) {
-            writingRef.current.style.height = 'auto';
-            writingRef.current.style.height = `${writingRef.current.scrollHeight}px`;
-        }
-    }, [content,assignment]);
-
-    useEffect(() => {
-        if (feedbackRef?.current) {
-            feedbackRef.current.style.height = 'auto';
-            feedbackRef.current.style.height = `${feedbackRef.current.scrollHeight}px`;
-        }
-    }, [feedback]);
 
     if (!writingId || !assignment) return null;
 
