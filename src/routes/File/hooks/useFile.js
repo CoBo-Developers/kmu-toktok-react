@@ -1,25 +1,18 @@
-import './File.css';
-import downloadIcon from '../assets/icons/download-icon.png';
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import { getFileList, getCategoryList, fileDownload } from '../api/fileApi';
-import { fileFormattedDate } from '../utils/dateAndTime';
-import { useCategoryStore, useSelectedCategoryIdStore } from '../store/useFileStore';
-import LoadingModal from '../components/LoadingModal/LoadingModal';
+import { getFileList, getCategoryList, fileDownload } from '../../../api/fileApi';
+import { useCategoryStore, useSelectedCategoryIdStore } from '../../../store/useFileStore';
 
-function File() {
+const useFile = () => {
     const [cookies] = useCookies(['accessToken']);
     const [fileData, setFileData] = useState([]);
     const [allFileData, setAllFileData] = useState([]);
     const [categoryIdList, setCategoryIdList] = useState([]);
-
     const selectedCategoryId = useSelectedCategoryIdStore((state) => state.selectedCategoryId);
-
     const { categoryList, setCategoryList } = useCategoryStore((state) => ({
         categoryList: state.categoryList,
         setCategoryList: state.setCategoryList
     }));
-
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -46,7 +39,8 @@ function File() {
                 .then((response) => {
                     const filesWithCategoryId = response.data.files.map(file => ({
                         ...file,
-                        categoryId
+                        categoryId,
+                        categoryName: categoryList.find(cat => cat.id === categoryId).name,
                     }));
     
                     setAllFileData((prevData) => {
@@ -63,8 +57,7 @@ function File() {
                 });
         });
     }, [cookies.accessToken, categoryIdList]);
-    
-    
+
     useEffect(() => {
         if (selectedCategoryId === 0 || selectedCategoryId === null) {
             const sortedFiles = [...allFileData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -102,48 +95,21 @@ function File() {
                 setIsLoading(false);
             });
     };
-    
-    return (
-        <main className="file-main">
-            <LoadingModal show={isLoading} />
-            <section className="file-main-inner">
-                <table className="file-table">
-                    <thead>
-                        <tr>
-                            <th>순서</th>
-                            <th className="info-column">
-                                <div className="category-col">카테고리</div>
-                                <div className="title-col">제목</div>
-                                <div className="date-col">게시일</div>
-                            </th>
-                            <th>다운로드</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {fileData.map((item, index) => (
-                            <tr key={index}>
-                                <td className="order-column">
-                                    <span>{index + 1}</span>
-                                </td>
-                                <td className="info-column">
-                                    <div className="category-col">
-                                        <span className='category' style={{ backgroundColor: getCategoryColor(item.categoryId) }}>
-                                        {categoryList.find(cat => cat.id === item.categoryId)?.name}
-                                        </span>
-                                    </div>
-                                    <div className="title-col">{item.name}</div>
-                                    <div className="date-col">{fileFormattedDate(item.createdAt)}</div>
-                                </td>
-                                <td className="download-column">
-                                    <img src={downloadIcon} className='download-btn' alt="" onClick={() => handleDownload(item.id, item.fileName)}/>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </section>
-        </main>
-    );
-}
 
-export default File;
+    const isNewFile = (createdAt) => {
+        const now = new Date();
+        const fileDate = new Date(createdAt);
+        const oneWeek = 7 * 24 * 60 * 60 * 1000;
+        return now - fileDate <= oneWeek;
+    };
+
+    return {
+        fileData,
+        isLoading,
+        handleDownload,
+        getCategoryColor,
+        isNewFile,
+    };
+};
+
+export default useFile;
