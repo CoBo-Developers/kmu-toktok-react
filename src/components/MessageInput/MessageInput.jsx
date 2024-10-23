@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import sendIcon from '../../assets/icons/send-icon.png';
+import sendIcon from '../../assets/icons/send-icon.svg';
 import './MessageInput.css';
 
 function MessageInput({

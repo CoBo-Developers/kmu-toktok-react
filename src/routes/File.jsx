@@ -1,5 +1,5 @@
 import './File.css';
-import downloadIcon from '../assets/icons/download-icon.png';
+import downloadIcon from '../assets/icons/download-icon.svg';
 import { useState, useEffect } from 'react'; 
 import { useCookies } from 'react-cookie';
 import { getFileList, getCategoryList, fileDownload } from '../api/fileApi';

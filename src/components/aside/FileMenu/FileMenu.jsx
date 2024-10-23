@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './FileMenu.css';
-import categoryCheckIcon from '../../../assets/icons/category-check-icon.png';
+import categoryCheckIcon from '../../../assets/icons/category-check-icon.svg';
 import { getCategoryList } from '../../../api/fileApi';
 import { useCookies } from 'react-cookie';
 import { useSelectedCategoryIdStore } from '../../../store/useFileStore';
