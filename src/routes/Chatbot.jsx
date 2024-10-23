@@ -41,14 +41,22 @@ function Chatbot() {
           {
             chatList.map((item, i) => {
               let formattedAnswer;
-              if (item.answer) {
+              const lastCharIdx = item.answer.length - 1;
+              if (item.answer && item.answer[0] === '\"' && item.answer[lastCharIdx] === '\"') {
                 formattedAnswer = item.answer
-                .slice(1, item.answer.length - 1)
+                .slice(1, lastCharIdx)
+                .replace(/""/g, '"')
+                .replace(/\\"/g, '"')
+                .replace(/\\n/g, '\n')
+                .replace(/【\d+:\d+†source】/g, '');
+              } else {
+                formattedAnswer = item.answer
                 .replace(/""/g, '"')
                 .replace(/\\"/g, '"')
                 .replace(/\\n/g, '\n')
                 .replace(/【\d+:\d+†source】/g, '');
               }
+
               if (!formattedAnswer) {
                 isBotLoading = true;
               }
