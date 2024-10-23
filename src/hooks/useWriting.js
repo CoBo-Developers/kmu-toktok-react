@@ -105,7 +105,25 @@ const useWriting = (writingId) => {
         const content2 = `${content.trim()}\nNumber of Characters: ${content.trim().length}`;
         getFeedback(cookies.accessToken, writingId, content2)
             .then((res) => {
-                setFeedback(res.data.feedback);
+                const response = res.data.feedback;
+                const lastCharIdx = response.length - 1;
+                let feedback = '';
+                if (response[0] === '\"' && response[lastCharIdx] === '\"') {
+                    feedback = response
+                            .slice(1, response.length - 1)
+                            .replace(/""/g, '"')
+                            .replace(/\\"/g, '"')
+                            .replace(/\\n/g, '\n')
+                            .replace(/【\d+:\d+†source】/g, '');
+                } else {
+                    feedback = response
+                        .replace(/""/g, '"')
+                        .replace(/\\"/g, '"')
+                        .replace(/\\n/g, '\n')
+                        .replace(/【\d+:\d+†source】/g, '');
+                }
+                
+                setFeedback(feedback);
                 setIsWaitingForFeedback(false);
             })
             .catch((error) => {
