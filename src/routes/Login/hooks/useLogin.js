@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useCookies } from 'react-cookie';
-import { loginApi } from '../api/authApi';
+import { loginApi } from '../../../api/authApi';
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
 
 function useLogin() {

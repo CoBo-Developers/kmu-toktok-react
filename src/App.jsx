@@ -1,7 +1,7 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Aside from './components/aside/Aside'
-import Login from './routes/Login';
+import Login from './routes/Login/Login';
 import Redirect from './routes/Redirect';
 import useShowAside from './hooks/useShowAside';
 import Register from './routes/Register';

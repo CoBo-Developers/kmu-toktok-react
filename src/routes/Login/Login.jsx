@@ -1,6 +1,6 @@
 import './Login.css';
-import kakaoImg from '../assets/images/kakao_logo.png';
-import naverImg from '../assets/images/naver_logo.png';
+import kakaoImg from '../../assets/images/kakao_logo.png';
+import naverImg from '../../assets/images/naver_logo.png';
 
 function Login() {
     const handleLoginBtn = (option) => {
