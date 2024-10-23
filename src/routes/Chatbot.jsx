@@ -41,7 +41,10 @@ function Chatbot() {
           {
             chatList.map((item, i) => {
               let formattedAnswer;
-              const lastCharIdx = item.answer.length - 1;
+              let lastCharIdx;
+
+              if (item.answer) lastCharIdx = item.answer.length - 1;
+
               if (item.answer && item.answer[0] === '\"' && item.answer[lastCharIdx] === '\"') {
                 formattedAnswer = item.answer
                 .slice(1, lastCharIdx)
@@ -49,7 +52,7 @@ function Chatbot() {
                 .replace(/\\"/g, '"')
                 .replace(/\\n/g, '\n')
                 .replace(/【\d+:\d+†source】/g, '');
-              } else {
+              } else if (item.answer) {
                 formattedAnswer = item.answer
                 .replace(/""/g, '"')
                 .replace(/\\"/g, '"')
