@@ -7,7 +7,7 @@ import useShowAside from './hooks/useShowAside';
 import Register from './routes/Register';
 import Chatbot from './routes/Chatbot';
 import useReissue from './hooks/useReissue';
-import ChatProf from './routes/ChatProf';
+import ChatProf from './routes/ChatProf/ChatProf';
 import Writing from './routes/Writing';
 import File from './routes/File';
 import useShowAlarm from './hooks/useShowAlarm';
