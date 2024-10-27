@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import useCurrentPath from "./useCurrentPath";
-import useShowExtendStore from "../store/useShowExtendStore";
+import useCurrentPath from "../../../../hooks/useCurrentPath";
+import useShowExtendStore from "../../../../store/useShowExtendStore";
 import { useLocation } from "react-router-dom";
 
 function useShowExtend() {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { getChat } from '../api/chatProfApi';
+import { getChat } from '../../../../api/chatProfApi';
 import { useCookies } from 'react-cookie';
-import useLastCommentStore from '../store/useLastCommenStore';
+import useLastCommentStore from '../../../../store/useLastCommenStore';
 
 const useShowAlarm = () => {
     const [cookies] = useCookies(['accessToken']);

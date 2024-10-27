@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { getChat, postChat } from '../api/chatProfApi';
+import { getChat, postChat } from '../../../api/chatProfApi';
 import { useCookies } from 'react-cookie';
 
 const useChatProf = () => {
