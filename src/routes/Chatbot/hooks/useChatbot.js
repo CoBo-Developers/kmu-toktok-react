@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { getChat, postChat } from '../api/chatBotApi';
+import { getChat, postChat } from '../../../api/chatBotApi';
 import { useCookies } from 'react-cookie';
 
 function useChatbot() {
@@ -54,7 +54,7 @@ function useChatbot() {
       })
       setChatList(chatListCopy);
       postChat(inputMessage.trim(), cookies.accessToken)
-      .then((res) => {
+      .then(() => {
         getChat(cookies.accessToken)
         .then((res) => {
           setChatList(res.data);
@@ -103,4 +103,4 @@ function useChatbot() {
   }
 }
 
-export default useChatbot
+export default useChatbot;

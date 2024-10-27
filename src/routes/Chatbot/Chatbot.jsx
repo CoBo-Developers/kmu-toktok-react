@@ -1,8 +1,8 @@
 import './Chatbot.css';
-import useChatbot from '../hooks/useChatbot';
-import MessageInput from '../components/MessageInput/MessageInput';
-import Loading from '../components/Loading/Loading';
-import LoadingModal from '../components/LoadingModal/LoadingModal';
+import useChatbot from './hooks/useChatbot';
+import MessageInput from '../../components/MessageInput/MessageInput';
+import Loading from './components/Loading/Loading';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
 
 function Chatbot() {
   const {
