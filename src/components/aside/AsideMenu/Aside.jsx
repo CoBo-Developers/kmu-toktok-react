@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './Aside.css';
 import { useCookies } from 'react-cookie';
-import tagIcon from '../../../assets/icons/tag-icon.png';
-import chatIcon from '../../../assets/icons/chat-icon.png';
-import personIcon from '../../../assets/icons/person-icon.png';
-import fileIcon from '../../../assets/icons/file-icon.png';
-import writingIcon from '../../../assets/icons/writing-icon.png';
-import mobileAsideIcon from '../../../assets/icons/mobile-aside-icon.png';
+import tagIcon from '../../../assets/icons/tag-icon.svg';
+import chatIcon from '../../../assets/icons/chat-icon.svg';
+import personIcon from '../../../assets/icons/person-icon.svg';
+import fileIcon from '../../../assets/icons/file-icon.svg';
+import writingIcon from '../../../assets/icons/writing-icon.svg';
+import mobileAsideIcon from '../../../assets/icons/mobile-aside-icon.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import useCurrentPath from '../../../hooks/useCurrentPath';
 import useLastCommentStore from '../../../store/useLastCommenStore';

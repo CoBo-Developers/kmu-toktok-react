@@ -1,5 +1,5 @@
 import './File.css';
-import downloadIcon from '../../assets/icons/download-icon.png';
+import downloadIcon from '../../assets/icons/download-icon.svg';
 import { fileFormattedDate } from '../../utils/dateAndTime';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
 import useFile from './hooks/useFile';
