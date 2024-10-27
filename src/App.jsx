@@ -8,7 +8,7 @@ import Register from './routes/Register';
 import Chatbot from './routes/Chatbot';
 import useReissue from './hooks/useReissue';
 import ChatProf from './routes/ChatProf';
-import Writing from './routes/Writing';
+import Writing from './routes/Writing/Writing';
 import File from './routes/File';
 import useShowAlarm from './components/Aside/AsideMenu/hooks/useShowAlarm';
 
