@@ -7,9 +7,9 @@ import useShowAside from './components/Aside/AsideMenu/hooks/useShowAside';
 import Register from './routes/Register';
 import Chatbot from './routes/Chatbot';
 import useReissue from './hooks/useReissue';
+import File from './routes/File/File';
 import ChatProf from './routes/ChatProf/ChatProf';
 import Writing from './routes/Writing/Writing';
-import File from './routes/File';
 import useShowAlarm from './components/Aside/AsideMenu/hooks/useShowAlarm';
 
 function App() {
