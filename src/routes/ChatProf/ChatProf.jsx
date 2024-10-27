@@ -1,8 +1,8 @@
 import './ChatProf.css';
-import useChatProf from '../hooks/useChatProf';
-import { formatDate, formatTime } from '../utils/dateAndTime';
-import MessageInput from '../components/MessageInput/MessageInput';
-import LoadingModal from '../components/LoadingModal/LoadingModal';
+import useChatProf from './hooks/useChatProf';
+import { formatDate, formatTime } from '../../utils/dateAndTime';
+import MessageInput from '../../components/MessageInput/MessageInput';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
 
 function ChatProf() {
   const {
