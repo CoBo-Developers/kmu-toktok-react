@@ -2,7 +2,7 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Login from './routes/Login/Login';
 import Aside from './components/Aside/AsideMenu/Aside';
-import Redirect from './routes/Redirect';
+import Redirect from './routes/Redirect/Redirect';
 import Register from './routes/Register/Register';
 import useShowAside from './components/Aside/AsideMenu/hooks/useShowAside';
 import Chatbot from './routes/Chatbot/Chatbot';
