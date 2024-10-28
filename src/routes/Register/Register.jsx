@@ -1,7 +1,7 @@
 import "./Register.css";
 import useRegister from "./hooks/useRegister";
-import checkedIcon from "../../assets/icons/checked-icon.png";
-import uncheckedIcon from "../../assets/icons/unchecked-icon.png";
+import checkedIcon from "../../assets/icons/checked-icon.svg";
+import uncheckedIcon from "../../assets/icons/unchecked-icon.svg";
 
 function Register() {
   const { 
