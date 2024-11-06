@@ -7,7 +7,6 @@
 
 .file-main-inner {
   padding-left: 560px;
-  margin: 40px auto;
   display: flex;
   justify-content: center;
 }
@@ -17,6 +16,7 @@
   width: 80%;
   border: none;
   table-layout: fixed;
+  margin: 40px auto;
 }
 
 .file-table tr {
@@ -155,6 +155,7 @@
 
   .file-table {
     width: 95%;
+    margin-top: 0;
   }
 
   .file-table thead {

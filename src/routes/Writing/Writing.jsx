@@ -64,7 +64,7 @@ function Writing() {
         </article>
         <hr />
         <article className="writing-description-container">
-          <div>
+          <div className="description-wrapper">
             <span className="description-label">설명</span>
             <span className="description-content">
               {assignment.description}
