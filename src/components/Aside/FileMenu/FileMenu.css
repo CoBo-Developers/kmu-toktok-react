@@ -1,0 +1,31 @@
+.category-wrapper {
+    background-color: #152A41;
+    border-radius: 10px;
+}
+.category-list {
+    list-style-type: none;
+    padding: 10px;
+}
+.category-list li {
+    padding: 3px;
+    cursor: pointer;
+    color: #5E7D9F;
+    font-size: 14px;
+}
+  
+.category-list li:hover {
+    background-color: #2a3548;
+    border-radius: 6px;
+}
+.category-check-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+}
+.category-item {
+    display: flex;
+    align-items: center;
+}
+.category-item.active{
+    color: #fff;
+}

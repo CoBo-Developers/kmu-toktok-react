@@ -1,0 +1,51 @@
+.writing-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 400;
+    padding: 0 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    gap: 5px;
+}
+.writing-week {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 400;
+    flex: 1;
+}
+.writing-state {
+    width: 65px;
+}
+.writing-item:hover {
+    background-color: #465F7A;
+}
+.writing-state-title {
+    font-size: 12px;
+    color: #fff;
+}
+.writing-state-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 5px;
+    display: inline-block;
+}
+.writing-state-color.approved {
+    background-color: #65FF4D;
+}
+.writing-state-color.submmited {
+    background-color: #FFA24D;
+}
+.writing-state-color.not-approved{
+    background-color: #FF4D4D;
+}
+.writing-state-color.not-submitted{
+    background-color: transparent;
+}
+.writing-state-color.expired{
+    background-color: #FF4D4D;
+}
