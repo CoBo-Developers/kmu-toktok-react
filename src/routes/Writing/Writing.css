@@ -65,6 +65,14 @@
     gap: 20px;
     padding: 0 10px;
 }
+.description-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.description-content {
+    word-break: keep-all;
+}
 .description-label {
     font-size: 14px;
     color: #000;
@@ -74,6 +82,7 @@
     border-radius: 10px;
     margin-right: 10px;
     word-break: keep-all;
+    margin-bottom: auto;
 }
 .writing-content-container {
     display: flex;
