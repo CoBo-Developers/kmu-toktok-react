@@ -193,7 +193,7 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    width: 296px;
+    width: 100%;
 }
 .register-content-right .next-btn.active {
     background-color: #001832;
@@ -272,7 +272,9 @@
 .info-table td {
     padding: 5px 8px;
 }
-
+.btn-wrapper {
+    width: 100%;
+}
 @media screen and (max-width: 900px) {
     .register-main {
         background-image: none;
