@@ -7,7 +7,6 @@
     padding: 10px;
 }
 .category-list li {
-    padding: 3px;
     cursor: pointer;
     color: #5E7D9F;
     font-size: 14px;
@@ -28,4 +27,21 @@
 }
 .category-item.active{
     color: #fff;
+}
+.category-name {
+    padding: 8px 0;
+    border-bottom: 1px solid #1C3C5D;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.category-item:last-child .category-name {
+    border-bottom: none;
+}
+.category-check-icon {
+    margin-right: 5px;
+    visibility: hidden;
+}
+.category-item.active .category-check-icon {
+    visibility: visible;
 }

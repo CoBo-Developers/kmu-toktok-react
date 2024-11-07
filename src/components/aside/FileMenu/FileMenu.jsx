@@ -40,14 +40,12 @@ const FileMenu = () => {
             className={`category-item ${ selectedCategoryIdStore === category.id ? "active" : "" }`}
             onClick={() => handleCategoryClick(category.id)}
           >
-            {category.name}
-            {selectedCategoryIdStore === category.id && (
-              <img
-                src={categoryCheckIcon}
-                className="category-check-icon"
-                alt=""
-              />
-            )}
+            <img
+              src={categoryCheckIcon}
+              className="category-check-icon"
+              alt=""
+            />
+            <span className="category-name">{category.name}</span>
           </li>
         ))}
       </ul>
