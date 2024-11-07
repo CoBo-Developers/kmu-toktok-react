@@ -1,6 +1,5 @@
 import './File.css';
-import downloadIcon from '../../assets/icons/download-icon.svg';
-import { fileFormattedDate } from '../../utils/dateAndTime';
+import FileItem from './components/FileItem';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
 import useFile from './hooks/useFile';
 
@@ -31,40 +30,14 @@ return (
         </thead>
         <tbody>
           {fileData.map((item, index) => (
-            <tr key={index}>
-              <td className="order-column">
-                <span>{index + 1}</span>
-              </td>
-              <td className="info-column">
-                <div className="category-col">
-                  <span
-                    className="category"
-                    style={{
-                      backgroundColor: getCategoryColor(item.categoryId),
-                    }}
-                  >
-                    {item.categoryName}
-                  </span>
-                </div>
-                <div className="title-col">
-                  <span className="title-text">{item.name}</span>
-                  {isNewFile(item.createdAt) && (
-                    <span className="new-badge">new</span>
-                  )}
-                </div>
-                <div className="date-col">
-                  {fileFormattedDate(item.createdAt)}
-                </div>
-              </td>
-              <td className="download-column">
-                <img
-                  src={downloadIcon}
-                  className="download-btn"
-                  alt=""
-                  onClick={() => handleDownload(item.id, item.fileName)}
-                />
-              </td>
-            </tr>
+            <FileItem
+              key={index}
+              item={item}
+              index={index}
+              handleDownload={handleDownload}
+              getCategoryColor={getCategoryColor}
+              isNewFile={isNewFile}
+            />
           ))}
         </tbody>
       </table>

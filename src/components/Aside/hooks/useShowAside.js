@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useCurrentPath from "../../../../hooks/useCurrentPath";
+import useCurrentPath from "../../../hooks/useCurrentPath";
 
 export default function useShowAside() {
   const currentPath = useCurrentPath();

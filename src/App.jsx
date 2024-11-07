@@ -1,16 +1,16 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Login from './routes/Login/Login';
-import Aside from './components/Aside/AsideMenu/Aside';
+import Aside from './components/Aside/Aside';
 import Redirect from './routes/Redirect/Redirect';
 import Register from './routes/Register/Register';
-import useShowAside from './components/Aside/AsideMenu/hooks/useShowAside';
+import useShowAside from './components/Aside/hooks/useShowAside';
 import Chatbot from './routes/Chatbot/Chatbot';
 import useReissue from './hooks/useReissue';
 import File from './routes/File/File';
 import ChatProf from './routes/ChatProf/ChatProf';
 import Writing from './routes/Writing/Writing';
-import useShowAlarm from './components/Aside/AsideMenu/hooks/useShowAlarm';
+import useShowAlarm from './components/Aside/hooks/useShowAlarm';
 
 function App() {
   const showAside = useShowAside();
