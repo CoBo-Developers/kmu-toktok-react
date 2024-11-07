@@ -135,7 +135,7 @@ function Writing() {
                           navigator.clipboard.writeText(feedback);
                         }}
                       >
-                        피드백 다룬로드
+                        피드백 다운로드
                       </button>
                     )}
                   </article>
