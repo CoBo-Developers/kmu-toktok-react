@@ -43,7 +43,7 @@ const FileMenu = () => {
             <img
               src={categoryCheckIcon}
               className="category-check-icon"
-              alt=""
+              alt="category-check-icon"
             />
             <span className="category-name">{category.name}</span>
           </li>
