@@ -127,6 +127,17 @@ function Writing() {
                       <img src={feedbackArrow} alt="feedback-arrow" />
                     </div>
                     <p>나의 글에 대한 피드백이 생성돼요!</p>
+                    {feedback.trim().length > 0 && (
+                      <button
+                        className="copy-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigator.clipboard.writeText(feedback);
+                        }}
+                      >
+                        피드백 다룬로드
+                      </button>
+                    )}
                   </article>
                 )}
               </div>
