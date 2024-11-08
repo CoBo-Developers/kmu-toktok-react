@@ -40,7 +40,7 @@ function WritingMenu() {
         <h2>주차별 학습활동</h2>
         <article className='total-score-container'>
             <h3 className='total-score-title'>현재 나의 학습활동 점수</h3>
-            <div className='total-score-wrapper'><span className='my-score'>{myScore}</span> / <span className='total-score'>{totalScore}</span></div>
+            <div className='total-score-wrapper'><span className='my-score'>{myScore}</span> / <span className='total-score'>30</span></div>
         </article>
         <ul>
           {writingList.map((item) => (
