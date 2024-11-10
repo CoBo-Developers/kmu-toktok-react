@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "./WritingItem.css";
-import { writingStateEnum } from "../../../utils/writingEnum";
-import { parseDateString } from "../../../utils/dateAndTime";
+import { writingStateEnum } from "../../../../../utils/writingEnum";
+import { parseDateString } from "../../../../../utils/dateAndTime";
 
 const WritingItem = ({ item, onClick }) => {
   const now = new Date();

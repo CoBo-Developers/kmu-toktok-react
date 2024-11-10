@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './WritingMenu.css';
-import WritingItem from './WritingItem';
+import WritingItem from './components/WritingItem/WritingItem';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
