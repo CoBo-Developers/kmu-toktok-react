@@ -1,0 +1,86 @@
+.file-main {
+  height: 100dvh;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.file-main-inner {
+  padding-left: 560px;
+  display: flex;
+  justify-content: center;
+}
+
+.file-table {
+  border-collapse: collapse;
+  width: 80%;
+  border: none;
+  table-layout: fixed;
+  margin: 40px auto;
+}
+
+.file-table tr {
+  border: none;
+}
+
+.file-table tbody th,
+.file-table tbody td {
+  padding: 5px 0;
+  font-size: 14px;
+  color: #000;
+  font-weight: 400;
+  border: none;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.file-table th:nth-child(3){
+  text-align: center;
+}
+.file-table thead th {
+  text-align: left;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #000;
+  font-weight: 400;
+  border-bottom: 1px solid #F0F1F3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.file-table th:nth-child(1){
+  width: 7%;
+  text-align: center;
+  position: relative;
+}
+
+.file-table th:nth-child(3){
+  width: 10%;
+  position: relative;
+}
+
+@media screen and (max-width: 900px) {
+  .file-main-inner {
+    padding-left: 0;
+    margin: 50px auto;
+  }
+
+  .file-table {
+    width: 95%;
+    margin-top: 0;
+  }
+
+  .file-table thead {
+    display: none;
+  }
+
+  .file-table tbody tr {
+    display: flex;
+    align-items: center;
+  }
+  .file-table tbody th,
+  .file-table tbody td {
+    padding: 15px 0;
+  }
+}

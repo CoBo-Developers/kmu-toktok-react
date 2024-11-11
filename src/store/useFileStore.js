@@ -3,7 +3,7 @@ import { create } from 'zustand'
 const useCategoryStore = create((set) => ({
     categoryList: [],
 
-    colors: ['#E3F1D4','#FFE5E5','#F7F5BA','#E2D7EE','#BADAF7','#FFBCC4','#CDBA9E','#BAF7F4','#FFDB96'],
+    colors: ['#FFD1FA','#E5FFD1','#D1F1FF','#FFFAD1','#EED1FF','#EEEEEE'],
 
     setCategoryList: (id, categoryName) =>
         set((state) => {
