@@ -7,7 +7,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    height: 75dvh;
+    height: calc(100dvh - 230px);
     overflow-y: auto;
 }
 .writing-menu > ul::-webkit-scrollbar {
